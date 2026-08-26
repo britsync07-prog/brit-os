@@ -42,11 +42,18 @@ const PROJECTS = [
     stack: ["Puppeteer", "SQLite", "Stripe"] },
 ];
 
+const DEVICON = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/";
 const SKILLS = [
-  ["TypeScript / JavaScript", 95], ["React / Next.js", 93], ["Node.js / Express", 92],
-  ["Python / FastAPI", 85], ["Databases (SQL / Prisma / ORM)", 88],
-  ["Payments (Stripe / PayPal)", 90], ["Email Infra (SMTP / DKIM)", 86],
-  ["Go / Rust (Tauri)", 74], ["DevOps (Docker / PM2 / CI)", 84], ["AI Agents (MCP)", 80],
+  ["TypeScript / JavaScript", 95, ["typescript/typescript-original", "javascript/javascript-original"]],
+  ["React / Next.js", 93, ["react/react-original", "nextjs/nextjs-original"]],
+  ["Node.js / Express", 92, ["nodejs/nodejs-original", "express/express-original"]],
+  ["Python / FastAPI", 85, ["python/python-original", "fastapi/fastapi-original"]],
+  ["Databases (SQL / Prisma / ORM)", 88, ["postgresql/postgresql-original", "mysql/mysql-original", "prisma/prisma-original"]],
+  ["Payments (Stripe / PayPal)", 90, ["stripe/stripe-original", "paypal/paypal-original"]],
+  ["\u2709\uFE0F Email Infra (SMTP / DKIM)", 86, []],
+  ["Go / Rust (Tauri)", 74, ["go/go-original", "rust/rust-original"]],
+  ["DevOps (Docker / Nginx / CI)", 84, ["docker/docker-original", "nginx/nginx-original", "githubactions/githubactions-original"]],
+  ["\uD83E\uDD16 AI Agents (MCP)", 80, []],
 ];
 
 const ABOUT_TXT = `> cat about.txt
@@ -252,10 +259,17 @@ function appProjects() {
 }
 
 function appSkills() {
-  const html = SKILLS.map(([n]) =>
-    `<div class="skill-row"><div class="skill-label"><span>${n}</span></div>
-     <div class="skill-bar"><div class="skill-fill"></div></div></div>`).join("");
-  createWindow("skills", "Skills.exe — System Capabilities", "\uD83D\uDCCA", html, 560, 500);
+  const html = SKILLS.map(([n, lvl, icons]) => {
+    const logos = (icons || []).map((i) =>
+      `<img src="${DEVICON}${i}.svg" alt="" loading="lazy" onerror="this.style.display='none'">`).join("");
+    return `<div class="skill-row">
+      <div class="skill-label">
+        <span class="skill-name"><span class="skill-logos">${logos}</span>${n}</span>
+        <span class="skill-pct">${lvl}%</span>
+      </div>
+      <div class="skill-bar"><div class="skill-fill"></div></div></div>`;
+  }).join("");
+  createWindow("skills", "Skills.exe — System Capabilities", "\uD83D\uDCCA", html, 580, 520);
   requestAnimationFrame(animateSkills);
 }
 function animateSkills() {

@@ -293,7 +293,14 @@ body {
 }
 .gh-link:hover { filter: brightness(1.15); }
 .skill-row { margin-bottom: 15px; }
-.skill-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 5px; }
+.skill-label { display: flex; justify-content: space-between; align-items: center; font-size: 13px; margin-bottom: 5px; }
+.skill-name { display: flex; align-items: center; gap: 8px; }
+.skill-pct { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.skill-logos { display: inline-flex; gap: 4px; }
+.skill-logos img {
+  width: 21px; height: 21px; border-radius: 5px; padding: 2.5px;
+  background: rgba(255,255,255,.09); border: 1px solid rgba(255,255,255,.07);
+}
 .skill-bar { height: 10px; background: rgba(255,255,255,.07); border-radius: 6px; overflow: hidden; }
 .skill-fill { height: 100%; width: 0; background: var(--accent-grad); border-radius: 6px; transition: width 1s cubic-bezier(.25,.9,.3,1); }
 
