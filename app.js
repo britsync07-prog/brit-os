@@ -1,6 +1,6 @@
 /* ============================================================
    BritOS 7 — portfolio of Musfiqur Rahman Saimon
-   britsync07-prog | mdsaimon552723@gmail.com
+   portfolio OS
    ============================================================ */
 "use strict";
 
@@ -10,7 +10,6 @@ const isMobile = () => window.matchMedia("(max-width: 720px)").matches;
 /* ---------------- DATA ---------------- */
 const PROFILE = {
   name: "Musfiqur Rahman Saimon",
-  handle: "britsync07-prog",
   role: "Full-Stack Product Engineer",
   email: "mdsaimon552723@gmail.com",
   github: "https://github.com/britsync07-prog",
