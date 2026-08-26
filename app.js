@@ -388,7 +388,7 @@ function appContact() {
   w.el.querySelector("#copy-mail").addEventListener("click", (e) => {
     e.preventDefault();
     navigator.clipboard?.writeText(PROFILE.email);
-    e.currentTarget.querySelector("small").textContent = "copiated ✓".replace("copiated", "copied");
+    e.currentTarget.querySelector("small").textContent = "copied ✓";
     beep(800, 0.06);
   });
   beep(700, 0.05);
