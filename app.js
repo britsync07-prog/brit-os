@@ -227,9 +227,10 @@ function makeDraggable(win, bar, appId) {
   });
   bar.addEventListener("pointermove", (e) => {
     if (!dragging) return;
-    const nx = ox + e.clientX - sx, ny = oy + e.clientY - sy;
-    win.style.left = Math.max(-100, nx) + "px";
-    win.style.top = Math.max(0, ny) + "px";
+    const nx = Math.min(window.innerWidth - 110, Math.max(-(win.offsetWidth - 80), ox + e.clientX - sx));
+    const ny = Math.min(window.innerHeight - 90, Math.max(0, oy + e.clientY - sy));
+    win.style.left = nx + "px";
+    win.style.top = ny + "px";
   });
   bar.addEventListener("pointerup", () => { dragging = false; });
 }
@@ -262,7 +263,7 @@ const APPS = {
     const html = `
       <div class="contact-grid">
         <a class="ccard" href="mailto:${PROFILE.email}"><span class="ci">📧</span><b>Email</b><small>${PROFILE.email}</small></a>
-        <a class="ccard" href="${PROFILE.github}" target="_blank" rel="noopener"><span class="ci">🐙</span><b>GitHub</b><small>@${PROFILE.handle}</small></a>
+        <a class="ccard" href="${PROFILE.github}" target="_blank" rel="noopener"><span class="ci">🐙</span><b>GitHub</b><small>Open my GitHub profile ↗</small></a>
         <a class="ccard" href="#" id="copy-mail"><span class="ci">📋</span><b>Copy Email</b><small>click to copy</small></a>
       </div>
       <p style="margin-top:16px;color:#8a8aa3;font-size:13px">Open for freelance builds, collaborations, and interesting problems.</p>`;
@@ -294,7 +295,7 @@ const APPS = {
 
 const ABOUT_TXT = `> cat about.txt
 
-Hi, I'm ${PROFILE.name} (${PROFILE.handle}).
+Hi, I'm ${PROFILE.name} — ${PROFILE.role}.
 
 I build COMPLETE products — the kind with real users,
 real payments, real infrastructure:
@@ -420,13 +421,13 @@ Builds complete products: vaults, CRMs, trading engines,
 payment platforms, AI pipelines. Type <span class="t-accent">projects</span> for proof.`);
         break;
       case "projects":
-        print(PROJECTS.map((p) => `${p.icon} ${p.name.padEnd(16)} → github.com/${PROFILE.handle}/${p.repo}`).join("\n"));
+        print(PROJECTS.map((p) => `${p.icon} ${p.name.padEnd(16)} [${p.repo}]`).join("\n"));
         break;
       case "skills":
         print(SKILLS.map(([n, lvl]) => `${n}: ${"█".repeat(Math.round(lvl / 8))}${lvl}%`).join("\n"));
         break;
       case "socials":
-        print(`github → ${PROFILE.github}`);
+        print(`github → <a href="${PROFILE.github}" target="_blank" rel="noopener" style="color:#a78bfa">open my GitHub profile ↗</a>`);
         break;
       case "contact":
         print(`email → ${PROFILE.email}`);
