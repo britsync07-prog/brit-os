@@ -1,5 +1,5 @@
 /* ============================================================
-   BritOS 7 — portfolio OS
+   BritOS 7 â€” portfolio OS
    ============================================================ */
 "use strict";
 
@@ -16,52 +16,52 @@ const PROFILE = {
 };
 
 const PROJECTS = [
-  { icon: "🔐", name: "AHS Vault", repo: "ahs-app",
+  { icon: "ðŸ”", name: "AHS Vault", repo: "ahs-app",
     desc: "Zero-knowledge biometric vault. AES-256-GCM chunked storage unlocked by paired phone / WebAuthn.",
     stack: ["Go", "Rust/Tauri", "React PWA", "Kotlin"] },
-  { icon: "📊", name: "BritCRM", repo: "crm",
+  { icon: "ðŸ“Š", name: "BritCRM", repo: "crm",
     desc: "Self-hosted all-in-one CRM with LiveKit meetings, team chat, billing + MCP server for AI agents.",
     stack: ["Next.js 16", "Socket.io", "Prisma", "LiveKit"] },
-  { icon: "💳", name: "BlackDesck", repo: "stripepay",
+  { icon: "ðŸ’³", name: "BlackDesck", repo: "stripepay",
     desc: "Consultation platform with Stripe Connect payouts and risk-based 3DS checkout.",
     stack: ["Laravel", "Inertia", "React", "Stripe"] },
-  { icon: "📈", name: "BritTrade AI", repo: "britTrade",
+  { icon: "ðŸ“ˆ", name: "BritTrade AI", repo: "britTrade",
     desc: "Crypto signal engine with automated Binance futures execution, paper/live parity, Android app.",
     stack: ["Node.js", "CCXT", "Capacitor", "Kotlin"] },
-  { icon: "🎬", name: "BritTube", repo: "BritTube",
-    desc: "AI video pipeline: script → footage → TTS → subtitles → MP4, public API + MCP server.",
+  { icon: "ðŸŽ¬", name: "BritTube", repo: "BritTube",
+    desc: "AI video pipeline: script â†’ footage â†’ TTS â†’ subtitles â†’ MP4, public API + MCP server.",
     stack: ["FastAPI", "MoviePy", "Next.js", "MCP"] },
-  { icon: "🎰", name: "WinyPay Client", repo: "bdclient011",
+  { icon: "ðŸŽ°", name: "WinyPay Client", repo: "bdclient011",
     desc: "Gaming platform with seamless-wallet integration and custom payment gateway.",
     stack: ["Next.js 15", "Express", "Prisma"] },
-  { icon: "✉️", name: "MailSender", repo: "mailsender",
+  { icon: "âœ‰ï¸", name: "MailSender", repo: "mailsender",
     desc: "Postal-style multi-tenant MTA infrastructure: DKIM/SPF automation, warmup engine.",
     stack: ["TypeScript", "SMTP", "PostgreSQL", "Redis"] },
-  { icon: "🎯", name: "LeadHunter", repo: "testingit",
+  { icon: "ðŸŽ¯", name: "LeadHunter", repo: "testingit",
     desc: "B2B lead-gen platform: stealth scraping queue, segmented newsletters, tracking pixels.",
     stack: ["Puppeteer", "SQLite", "Stripe"] },
 ];
 
 const SKILLS = [
   ["TypeScript / JavaScript", 95], ["React / Next.js", 93], ["Node.js / Express", 92],
-  ["Python / FastAPI", 85], ["Databases (SQL · Prisma · ORM)", 88],
+  ["Python / FastAPI", 85], ["Databases (SQL Â· Prisma Â· ORM)", 88],
   ["Payments (Stripe / PayPal)", 90], ["Email Infra (SMTP / DKIM)", 86],
-  ["Go / Rust (Tauri)", 74], ["DevOps (Docker · PM2 · CI)", 84], ["AI Agents (MCP)", 80],
+  ["Go / Rust (Tauri)", 74], ["DevOps (Docker Â· PM2 Â· CI)", 84], ["AI Agents (MCP)", 80],
 ];
 
 const ABOUT_TXT = `> cat about.txt
 
-Hi, I'm ${PROFILE.name} — ${PROFILE.role}.
+Hi, I'm ${PROFILE.name} â€” ${PROFILE.role}.
 
-I build COMPLETE products — the kind with real users,
+I build COMPLETE products â€” the kind with real users,
 real payments, real infrastructure:
 
-  • Zero-knowledge vaults        (Go + Rust/Tauri)
-  • Production CRMs              (Next.js + LiveKit)
-  • Trading engines              (Binance futures)
-  • Payment platforms            (Stripe Connect)
-  • AI video pipelines           (FastAPI + MoviePy)
-  • Email infrastructure         (custom SMTP relays)
+  â€¢ Zero-knowledge vaults        (Go + Rust/Tauri)
+  â€¢ Production CRMs              (Next.js + LiveKit)
+  â€¢ Trading engines              (Binance futures)
+  â€¢ Payment platforms            (Stripe Connect)
+  â€¢ AI video pipelines           (FastAPI + MoviePy)
+  â€¢ Email infrastructure         (custom SMTP relays)
 
 I don't stop at "it works on my machine".
 I handle payment flows, deliverability,
@@ -171,9 +171,9 @@ function createWindow(appId, title, icon, bodyHTML, w = 640, h = 480) {
   win.innerHTML =
     `<div class="titlebar">
        <span class="t-icon">${icon}</span><span class="t-title">${title}</span>
-       <button class="win-btn min">—</button>
-       <button class="win-btn max">▢</button>
-       <button class="win-btn close">✕</button>
+       <button class="win-btn min">â€”</button>
+       <button class="win-btn max">â–¢</button>
+       <button class="win-btn close">âœ•</button>
      </div>
      <div class="win-body">${bodyHTML}</div>`;
   $("#windows-layer").appendChild(win);
@@ -235,14 +235,14 @@ function makeDraggable(win, bar) {
 }
 
 /* ---------------- CORE APPS ---------------- */
-function appAbout() { createWindow("about", "About.txt — Notepad", "📄", `<div class="notepad-view">${ABOUT_TXT}</div>`, 600, 540); beep(600, 0.05); }
+function appAbout() { createWindow("about", "About.txt â€” Notepad", "ðŸ“„", `<div class="notepad-view">${ABOUT_TXT}</div>`, 600, 540); beep(600, 0.05); }
 
 function appProjects() {
   const html = PROJECTS.map((p) =>
     `<div class="proj-card"><b>${p.icon} ${p.name}</b><p>${p.desc}</p>
      <div class="chips">${p.stack.map((s) => `<span class="chip">${s}</span>`).join("")}</div>
-     <a class="gh-link" href="${PROFILE.github}/${p.repo}" target="_blank" rel="noopener">View on GitHub ↗</a></div>`).join("");
-  createWindow("projects", `Projects — ${PROJECTS.length} shipped`, "🚀", html, 660, 560);
+     <a class="gh-link" href="${PROFILE.github}/${p.repo}" target="_blank" rel="noopener">View on GitHub â†—</a></div>`).join("");
+  createWindow("projects", `Projects â€” ${PROJECTS.length} shipped`, "ðŸš€", html, 660, 560);
   beep(640, 0.05);
 }
 
@@ -250,7 +250,7 @@ function appSkills() {
   const html = SKILLS.map(([n]) =>
     `<div class="skill-row"><div class="skill-label"><span>${n}</span></div>
      <div class="skill-bar"><div class="skill-fill"></div></div></div>`).join("");
-  createWindow("skills", "Skills.exe — System Capabilities", "📊", html, 560, 500);
+  createWindow("skills", "Skills.exe â€” System Capabilities", "ðŸ“Š", html, 560, 500);
   requestAnimationFrame(animateSkills);
 }
 function animateSkills() {
@@ -267,12 +267,12 @@ const EXPLORER = [
   ...PROJECTS.map((p) => ({ name: p.name, parent: "saimon", type: "project", ref: p })),
   { name: "Documents", parent: "saimon", type: "folder" },
   { name: "philosophy.txt", parent: "Documents", type: "file",
-    body: "\n1. Ship fast, ship tested.\n2. Paper-trade before live.\n3. Webhooks are liars — verify everything.\n4. The database you committed to git will haunt you.\n" },
+    body: "\n1. Ship fast, ship tested.\n2. Paper-trade before live.\n3. Webhooks are liars â€” verify everything.\n4. The database you committed to git will haunt you.\n" },
   { name: "bucket-list.txt", parent: "Documents", type: "file",
     body: "\n[x] Build a vault nobody can peek into\n[x] Automate a trading desk\n[x] Run a CRM in production\n[ ] 100k emails/day infrastructure\n[ ] An OS portfolio (you are looking at it)\n" },
 ];
 function appExplorer() {
-  createWindow("explorer", "My Works — File Explorer", "📁", `<div class="explore"><div class="exp-side" id="exp-side"></div><div class="exp-main" id="exp-main"></div></div>`, 700, 490);
+  createWindow("explorer", "My Works â€” File Explorer", "ðŸ“", `<div class="explore"><div class="exp-side" id="exp-side"></div><div class="exp-main" id="exp-main"></div></div>`, 700, 490);
   wireExplorer(); beep(660, 0.05);
 }
 function wireExplorer() {
@@ -284,7 +284,7 @@ function wireExplorer() {
     EXPLORER.forEach((item, idx) => {
       const depth = item.parent ? pathByName(item.parent).split("\\").length : 0;
       const d = document.createElement("div");
-      d.textContent = (item.type === "project" ? "📁 " : item.type === "file" ? "📄 " : "💾 ") + item.name;
+      d.textContent = (item.type === "project" ? "ðŸ“ " : item.type === "file" ? "ðŸ“„ " : "ðŸ’¾ ") + item.name;
       d.style.paddingLeft = 10 + depth * 14 + "px";
       if (idx === active) d.classList.add("on");
       d.addEventListener("click", () => renderMain(idx));
@@ -296,15 +296,15 @@ function wireExplorer() {
     renderSide(idx);
     if (item.type === "project") {
       const p = item.ref;
-      main.innerHTML = `<h3>📁 ${p.name}</h3><div class="ep-desc">${p.desc}</div>
+      main.innerHTML = `<h3>ðŸ“ ${p.name}</h3><div class="ep-desc">${p.desc}</div>
         <div class="chips">${p.stack.map((s) => `<span class="chip">${s}</span>`).join("")}</div>
-        <a class="gh-link" href="${PROFILE.github}/${p.repo}" target="_blank" rel="noopener">Open repository ↗</a>`;
+        <a class="gh-link" href="${PROFILE.github}/${p.repo}" target="_blank" rel="noopener">Open repository â†—</a>`;
     } else if (item.type === "file") {
-      main.innerHTML = `<h3>📄 ${item.name}</h3><div class="notepad-view">${item.body}</div>`;
+      main.innerHTML = `<h3>ðŸ“„ ${item.name}</h3><div class="notepad-view">${item.body}</div>`;
     } else {
       const kids = EXPLORER.filter((x) => x.parent === item.name);
-      main.innerHTML = `<h3>💾 ${pathOf(item)}</h3><div class="ep-desc">${kids.length} item(s)</div>` +
-        kids.map((k) => `<div class="proj-card"><b>${k.type === "file" ? "📄" : "📁"} ${k.name}</b></div>`).join("");
+      main.innerHTML = `<h3>ðŸ’¾ ${pathOf(item)}</h3><div class="ep-desc">${kids.length} item(s)</div>` +
+        kids.map((k) => `<div class="proj-card"><b>${k.type === "file" ? "ðŸ“„" : "ðŸ“"} ${k.name}</b></div>`).join("");
     }
   }
   renderMain(EXPLORER.findIndex((x) => x.name === "saimon"));
@@ -312,12 +312,12 @@ function wireExplorer() {
 
 /* terminal */
 function appTerminal() {
-  createWindow("terminal", "Terminal — saimon@britos", "⌨️", termHTML(), 640, 430);
+  createWindow("terminal", "Terminal â€” saimon@britos", "âŒ¨ï¸", termHTML(), 640, 430);
   wireTerminal(); beep(520, 0.06);
 }
 function termHTML() {
   return `<div class="term" id="term">
-    <div class="t-out">BritOS Terminal v7.3 — type <span class="t-accent">help</span> to list commands</div>
+    <div class="t-out">BritOS Terminal v7.3 â€” type <span class="t-accent">help</span> to list commands</div>
     <div class="t-out">&nbsp;</div>
     <div class="term-input-line"><span class="t-in">visitor@britos:~$&nbsp;</span><input id="term-in" autocomplete="off" spellcheck="false"></div>
   </div>`;
@@ -350,12 +350,12 @@ function wireTerminal() {
   sudo       try your luck
   exit       close terminal`);
         break;
-      case "about": print(`${PROFILE.name} — ${PROFILE.role}. Type <span class="t-accent">projects</span> for proof.`); break;
+      case "about": print(`${PROFILE.name} â€” ${PROFILE.role}. Type <span class="t-accent">projects</span> for proof.`); break;
       case "projects": print(PROJECTS.map((p) => `${p.icon} ${p.name.padEnd(16)} [${p.repo}]`).join("\n")); break;
-      case "skills": print(SKILLS.map(([n, lvl]) => `${n}: ${"█".repeat(Math.round(lvl / 8))}${lvl}%`).join("\n")); break;
-      case "socials": print(`github → <a href="${PROFILE.github}" target="_blank" rel="noopener" style="color:#a78bfa">open my GitHub profile ↗</a>`); break;
-      case "contact": print(`email → ${PROFILE.email}`); break;
-      case "whoami": print("visitor — but saimon is the admin here"); break;
+      case "skills": print(SKILLS.map(([n, lvl]) => `${n}: ${"â–ˆ".repeat(Math.round(lvl / 8))}${lvl}%`).join("\n")); break;
+      case "socials": print(`github â†’ <a href="${PROFILE.github}" target="_blank" rel="noopener" style="color:#67e8f9">open my GitHub profile â†—</a>`); break;
+      case "contact": print(`email â†’ ${PROFILE.email}`); break;
+      case "whoami": print("visitor â€” but saimon is the admin here"); break;
       case "date": print(new Date().toString()); break;
       case "echo": print(args.join(" ").replace(/</g, "&lt;") || "&nbsp;"); break;
       case "clear": term.querySelectorAll(".t-out").forEach((n) => n.remove()); break;
@@ -363,8 +363,8 @@ function wireTerminal() {
         APPS[c === "calc" ? "calculator" : c](); print(`launching ${c}...`); break;
       case "sudo": print(args.join(" ") === "hire-me"
         ? "<span class='t-accent'>[PERMISSION GRANTED]</span> smart move. email sent to top of pile: " + PROFILE.email
-        : "nice try. visitor is not in the sudoers file. this incident WILL be reported… to my GitHub."); break;
-      case "matrix": startMatrix(); print("<span class='t-accent'>wake up… follow the purple rabbit.</span>"); break;
+        : "nice try. visitor is not in the sudoers file. this incident WILL be reportedâ€¦ to my GitHub."); break;
+      case "matrix": startMatrix(); print("<span class='t-accent'>wake upâ€¦ follow the purple rabbit.</span>"); break;
       case "exit": closeWin("terminal"); break;
       default: print(`'${c.replace(/</g, "&lt;")}' is not recognized. try <span class="t-accent">help</span>`);
     }
@@ -374,16 +374,16 @@ function wireTerminal() {
 function appContact() {
   const html = `
     <div class="contact-grid">
-      <a class="ccard" href="mailto:${PROFILE.email}"><span class="ci">📧</span><b>Email</b><small>${PROFILE.email}</small></a>
-      <a class="ccard" href="${PROFILE.github}" target="_blank" rel="noopener"><span class="ci">🐙</span><b>GitHub</b><small>Open my GitHub profile ↗</small></a>
-      <a class="ccard" href="#" id="copy-mail"><span class="ci">📋</span><b>Copy Email</b><small>click to copy</small></a>
+      <a class="ccard" href="mailto:${PROFILE.email}"><span class="ci">ðŸ“§</span><b>Email</b><small>${PROFILE.email}</small></a>
+      <a class="ccard" href="${PROFILE.github}" target="_blank" rel="noopener"><span class="ci">ðŸ™</span><b>GitHub</b><small>Open my GitHub profile â†—</small></a>
+      <a class="ccard" href="#" id="copy-mail"><span class="ci">ðŸ“‹</span><b>Copy Email</b><small>click to copy</small></a>
     </div>
     <p style="margin-top:16px;color:#8a8aa3;font-size:13px">Open for freelance builds, collaborations, and interesting problems.</p>`;
-  const w = createWindow("contact", "Contact — Get in touch", "📬", html, 560, 350);
+  const w = createWindow("contact", "Contact â€” Get in touch", "ðŸ“¬", html, 560, 350);
   w.el.querySelector("#copy-mail").addEventListener("click", (e) => {
     e.preventDefault();
     navigator.clipboard?.writeText(PROFILE.email);
-    e.currentTarget.querySelector("small").textContent = "copied ✓";
+    e.currentTarget.querySelector("small").textContent = "copied âœ“";
     beep(800, 0.06);
   });
   beep(700, 0.05);
@@ -407,19 +407,19 @@ function appCalculator() {
     <div class="calc">
       <div class="calc-disp"><div class="calc-hist" id="c-hist">&nbsp;</div><div class="calc-cur" id="c-cur">0</div></div>
       <div class="calc-pad" id="c-pad">
-        <button class="ckey fn" data-k="C">C</button><button class="ckey fn" data-k="back">⌫</button>
-        <button class="ckey fn" data-k="%">%</button><button class="ckey op" data-k="/">÷</button>
+        <button class="ckey fn" data-k="C">C</button><button class="ckey fn" data-k="back">âŒ«</button>
+        <button class="ckey fn" data-k="%">%</button><button class="ckey op" data-k="/">Ã·</button>
         <button class="ckey" data-k="7">7</button><button class="ckey" data-k="8">8</button>
-        <button class="ckey" data-k="9">9</button><button class="ckey op" data-k="*">×</button>
+        <button class="ckey" data-k="9">9</button><button class="ckey op" data-k="*">Ã—</button>
         <button class="ckey" data-k="4">4</button><button class="ckey" data-k="5">5</button>
-        <button class="ckey" data-k="6">6</button><button class="ckey op" data-k="-">−</button>
+        <button class="ckey" data-k="6">6</button><button class="ckey op" data-k="-">âˆ’</button>
         <button class="ckey" data-k="1">1</button><button class="ckey" data-k="2">2</button>
         <button class="ckey" data-k="3">3</button><button class="ckey op" data-k="+">+</button>
-        <button class="ckey fn" data-k="neg">±</button><button class="ckey" data-k="0">0</button>
+        <button class="ckey fn" data-k="neg">Â±</button><button class="ckey" data-k="0">0</button>
         <button class="ckey" data-k=".">.</button><button class="ckey eq" data-k="=">=</button>
       </div>
     </div>`;
-  const w = createWindow("calculator", "Calculator", "🧮", html, 320, 460);
+  const w = createWindow("calculator", "Calculator", "ðŸ§®", html, 320, 460);
   const cur = w.el.querySelector("#c-cur"), hist = w.el.querySelector("#c-hist");
   let acc = null, op = null, fresh = true;
   const show = (v) => { cur.textContent = v; };
@@ -479,14 +479,14 @@ function appCalendar() {
         <div class="cal-title" id="cal-t"></div>
         <div class="cal-nav">
           <button class="cal-btn wide" id="cal-today">Today</button>
-          <button class="cal-btn" id="cal-prev">‹</button>
-          <button class="cal-btn" id="cal-next">›</button>
+          <button class="cal-btn" id="cal-prev">â€¹</button>
+          <button class="cal-btn" id="cal-next">â€º</button>
         </div>
       </div>
       <div class="cal-grid" id="cal-g"></div>
       <div class="cal-foot" id="cal-f"></div>
     </div>`;
-  const w = createWindow("calendar", "Calendar", "📅", html, 360, 470);
+  const w = createWindow("calendar", "Calendar", "ðŸ“…", html, 360, 470);
   let view = new Date();
   const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
   const DOWS = ["Su","Mo","Tu","We","Th","Fr","Sa"];
@@ -508,8 +508,8 @@ function appCalendar() {
     for (let d = 1; d <= rem; d++) g.insertAdjacentHTML("beforeend", `<div class="cal-day dim">${d}</div>`);
     const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
     w.el.querySelector("#cal-f").textContent =
-      isMobile() ? `${dayOfYear} days into ${today.getFullYear()} — ship something.` :
-      `Week ${Math.ceil(dayOfYear / 7)} · Day ${dayOfYear} of ${today.getFullYear()} — ship something.`;
+      isMobile() ? `${dayOfYear} days into ${today.getFullYear()} â€” ship something.` :
+      `Week ${Math.ceil(dayOfYear / 7)} Â· Day ${dayOfYear} of ${today.getFullYear()} â€” ship something.`;
   }
   w.el.querySelector("#cal-prev").addEventListener("click", () => { view = new Date(view.getFullYear(), view.getMonth() - 1, 1); render(); });
   w.el.querySelector("#cal-next").addEventListener("click", () => { view = new Date(view.getFullYear(), view.getMonth() + 1, 1); render(); });
@@ -523,11 +523,11 @@ function appNotepad() {
   const html = `
     <textarea class="np-area" id="np-a" placeholder="Type anything. It saves automatically...">${saved.replace(/</g, "&lt;")}</textarea>
     <div class="np-status" id="np-s"></div>`;
-  const w = createWindow("notepad", "Notepad — untitled.txt", "📝", html, 560, 430);
+  const w = createWindow("notepad", "Notepad â€” untitled.txt", "ðŸ“", html, 560, 430);
   const ta = w.el.querySelector("#np-a"), st = w.el.querySelector("#np-s");
   const stat = () => {
     const t = ta.value;
-    st.textContent = `${t.length} chars · ${t.trim() ? t.trim().split(/\s+/).length : 0} words · autosaved`;
+    st.textContent = `${t.length} chars Â· ${t.trim() ? t.trim().split(/\s+/).length : 0} words Â· autosaved`;
   };
   let tid = null;
   ta.addEventListener("input", () => {
@@ -540,9 +540,9 @@ function appNotepad() {
 
 /* ---------------- SETTINGS ---------------- */
 const ACCENTS = {
-  neon:   { indigo: "#6366f1", violet: "#8b5cf6", pink: "#ec4899", css: "linear-gradient(135deg,#6366f1,#8b5cf6,#ec4899)" },
+  aqua:   { indigo: "#38bdf8", violet: "#06b6d4", pink: "#2dd4bf", css: "linear-gradient(135deg,#38bdf8,#06b6d4,#2dd4bf)" },
   matrix: { indigo: "#10b981", violet: "#22d55f", pink: "#a3e635", css: "linear-gradient(135deg,#10b981,#22d55f,#a3e635)" },
-  ice:    { indigo: "#38bdf8", violet: "#818cf8", pink: "#67e8f9", css: "linear-gradient(135deg,#38bdf8,#818cf8,#67e8f9)" },
+  ice:    { indigo: "#93c5fd", violet: "#60a5fa", pink: "#7dd3fc", css: "linear-gradient(135deg,#93c5fd,#60a5fa,#7dd3fc)" },
   ember:  { indigo: "#f97316", violet: "#ef4444", pink: "#fb7185", css: "linear-gradient(135deg,#f97316,#ef4444,#fb7185)" },
 };
 const WALLS = ["aurora", "midnight", "emberfall"];
@@ -564,8 +564,8 @@ function applySettings(s) {
   } else if (!s.crt && scan) scan.remove();
 }
 function getSettings() {
-  try { return JSON.parse(localStorage.getItem("britos-settings")) || { accent: "neon", wall: "aurora", crt: false }; }
-  catch (e) { return { accent: "neon", wall: "aurora", crt: false }; }
+  try { return JSON.parse(localStorage.getItem("britos-settings")) || { accent: "aqua", wall: "aurora", crt: false }; }
+  catch (e) { return { accent: "aqua", wall: "aurora", crt: false }; }
 }
 function saveSettings(s) { localStorage.setItem("britos-settings", JSON.stringify(s)); }
 
@@ -586,9 +586,12 @@ function appSettings() {
       <div class="toggle-row"><span>UI sounds</span>
         <label class="switch"><input type="checkbox" id="snd-t"${s.snd === false ? "" : " checked"}><span class="slider"></span></label>
       </div>
+      <div class="toggle-row"><span>Desktop icons</span>
+        <button class="wall-opt" id="reset-icons">Reset positions</button>
+      </div>
     </div>
     <p class="ep-desc" style="margin-top:6px">Settings persist in your browser.</p>`;
-  const w = createWindow("settings", "Settings — Personalization", "⚙️", html, 520, 480);
+  const w = createWindow("settings", "Settings â€” Personalization", "âš™ï¸", html, 520, 480);
   const upd = (patch) => { const ns = { ...getSettings(), ...patch }; saveSettings(ns); applySettings(ns); };
   w.el.querySelector("#sw").addEventListener("click", (e) => {
     const el = e.target.closest(".swatch"); if (!el) return;
@@ -602,6 +605,7 @@ function appSettings() {
   });
   w.el.querySelector("#crt-t").addEventListener("change", (e) => upd({ crt: e.target.checked }));
   w.el.querySelector("#snd-t").addEventListener("change", (e) => upd({ snd: e.target.checked }));
+  w.el.querySelector("#reset-icons").addEventListener("click", () => { localStorage.removeItem("britos-icon-pos"); location.reload(); });
   beep(700, 0.05);
 }
 /* global sound gate */
@@ -615,7 +619,7 @@ function appTaskMgr() {
     <table class="tm-table"><thead><tr><th>Process</th><th>CPU</th><th>Memory</th><th></th></tr></thead>
     <tbody id="tm-b"></tbody></table>
     <div class="tm-note">Processes = windows you have open. End task closes them. Obviously.</div>`;
-  const w = createWindow("taskmgr", "Task Manager", "🖥️", html, 540, 380);
+  const w = createWindow("taskmgr", "Task Manager", "ðŸ–¥ï¸", html, 540, 380);
   const body = w.el.querySelector("#tm-b");
   function render() {
     const ids = Object.keys(openWins).filter((k) => k !== "taskmgr");
@@ -647,10 +651,10 @@ function startMatrix() {
   cv.width = innerWidth; cv.height = innerHeight;
   const cols = Math.floor(cv.width / 15);
   const drops = Array(cols).fill(1);
-  const chars = "アイウエオカキクケコサシスセソ01BRITOS$#@";
+  const chars = "ã‚¢ã‚¤ã‚¦ã‚¨ã‚ªã‚«ã‚­ã‚¯ã‚±ã‚³ã‚µã‚·ã‚¹ã‚»ã‚½01BRITOS$#@";
   const iv = setInterval(() => {
     ctx.fillStyle = "rgba(0,0,0,.07)"; ctx.fillRect(0, 0, cv.width, cv.height);
-    ctx.fillStyle = "#8b5cf6"; ctx.font = "14px monospace";
+    ctx.fillStyle = "#34d399"; ctx.font = "14px monospace";
     drops.forEach((y, i) => {
       ctx.fillText(chars[Math.floor(Math.random() * chars.length)], i * 15, y * 15);
       if (y * 15 > cv.height && Math.random() > 0.975) drops[i] = 0;
@@ -670,9 +674,9 @@ const APPS = {
 
 /* ---------------- START MENU + SEARCH ---------------- */
 const SEARCH_INDEX = [
-  ...Object.keys(APPS).map((id) => ({ type: "app", id, label: id === "taskmgr" ? "Task Manager" : id === "recycle" ? "Recycle Bin" : id.charAt(0).toUpperCase() + id.slice(1), icon: { about: "📄", projects: "🚀", skills: "📊", explorer: "📁", terminal: "⌨️", contact: "📬", recycle: "🗑️", calculator: "🧮", calendar: "📅", notepad: "📝", settings: "⚙️", taskmgr: "🖥️" }[id], sub: "app" })),
+  ...Object.keys(APPS).map((id) => ({ type: "app", id, label: id === "taskmgr" ? "Task Manager" : id === "recycle" ? "Recycle Bin" : id.charAt(0).toUpperCase() + id.slice(1), icon: { about: "ðŸ“„", projects: "ðŸš€", skills: "ðŸ“Š", explorer: "ðŸ“", terminal: "âŒ¨ï¸", contact: "ðŸ“¬", recycle: "ðŸ—‘ï¸", calculator: "ðŸ§®", calendar: "ðŸ“…", notepad: "ðŸ“", settings: "âš™ï¸", taskmgr: "ðŸ–¥ï¸" }[id], sub: "app" })),
   ...PROJECTS.map((p) => ({ type: "project", ref: p, label: p.name, icon: p.icon, sub: p.repo })),
-  { type: "cmd", label: "Enter the matrix", icon: "🟩", sub: "command", run: () => startMatrix() },
+  { type: "cmd", label: "Enter the matrix", icon: "ðŸŸ©", sub: "command", run: () => startMatrix() },
 ];
 const smMenu = $("#start-menu"), smQ = $("#sm-q"), smHome = $("#sm-home"), smRes = $("#sm-results");
 
@@ -720,13 +724,69 @@ $("#pp-shutdown").addEventListener("click", () => {
 });
 $("#shutdown-screen").addEventListener("click", () => location.reload());
 
-/* ---------------- DESKTOP ICONS ---------------- */
+/* ---------------- DESKTOP ICONS: draggable ---------------- */
+let lastIconDrag = 0;
+function saveIconPositions() {
+  const o = {};
+  $$(".dicon").forEach((d) => { o[d.dataset.app] = { x: d.offsetLeft, y: d.offsetTop }; });
+  localStorage.setItem("britos-icon-pos", JSON.stringify(o));
+}
+function layoutIcons() {
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem("britos-icon-pos")) || {}; } catch (e) {}
+  const vh = innerHeight;
+  let col = 0, row = 0;
+  $$(".dicon").forEach((d) => {
+    const p = saved[d.dataset.app];
+    if (p && typeof p.x === "number") { d.style.left = p.x + "px"; d.style.top = p.y + "px"; return; }
+    let x = 12 + col * 102, y = 12 + row * 90;
+    while (y > vh - 180) { col++; row = 0; x = 12 + col * 102; y = 12; }
+    d.style.left = x + "px"; d.style.top = y + "px";
+    row++;
+  });
+}
+function makeIconDraggable(d) {
+  d.addEventListener("pointerdown", (e) => {
+    if (isMobile()) return;
+    e.preventDefault();
+    const sx = e.clientX, sy = e.clientY, ox = d.offsetLeft, oy = d.offsetTop;
+    let moved = false;
+    try { d.setPointerCapture(e.pointerId); } catch (err) {}
+    d.classList.add("dragging");
+    const mv = (ev) => {
+      if (Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) > 5) moved = true;
+      if (!moved) return;
+      const nx = Math.max(0, Math.min(innerWidth - d.offsetWidth, ox + ev.clientX - sx));
+      const ny = Math.max(0, Math.min(innerHeight - 100, oy + ev.clientY - sy));
+      d.style.left = nx + "px"; d.style.top = ny + "px";
+    };
+    const up = () => {
+      d.removeEventListener("pointermove", mv);
+      d.removeEventListener("pointerup", up);
+      d.removeEventListener("pointercancel", up);
+      d.classList.remove("dragging");
+      if (moved) { lastIconDrag = Date.now(); saveIconPositions(); }
+    };
+    d.addEventListener("pointermove", mv);
+    d.addEventListener("pointerup", up);
+    d.addEventListener("pointercancel", up);
+  });
+}
+
 $$(".dicon").forEach((d) => {
-  const launch = () => { d.classList.add("selected"); setTimeout(() => d.classList.remove("selected"), 350); APPS[d.dataset.app](); };
-  d.addEventListener("dblclick", launch);
-  d.addEventListener("click", () => d.classList.add("selected"));
+  makeIconDraggable(d);
+  d.addEventListener("dblclick", () => {
+    if (Date.now() - lastIconDrag < 250) return;
+    APPS[d.dataset.app]();
+  });
+  d.addEventListener("click", () => {
+    if (Date.now() - lastIconDrag < 250) return;
+    d.classList.add("selected");
+    setTimeout(() => d.classList.remove("selected"), 350);
+  });
 });
 
 /* ---------------- INIT ---------------- */
 applySettings(getSettings());
+layoutIcons();
 runBoot();
