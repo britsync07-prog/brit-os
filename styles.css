@@ -155,6 +155,7 @@ body {
   background: transparent; color: var(--text); cursor: pointer;
   font-size: 13px; line-height: 1; transition: background .12s, transform .12s;
 }
+.win-btn svg { width: 11px; height: 11px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; display: block; margin: auto; }
 .win-btn:hover { background: rgba(255,255,255,.15); transform: scale(1.06); }
 .win-btn.close:hover { background: #e81123; color: #fff; }
 .win-body { flex: 1; overflow: auto; padding: 16px; font-size: 14px; line-height: 1.65; }
