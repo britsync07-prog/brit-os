@@ -1,4 +1,10 @@
 # BritOS 7 — A Portfolio That Boots
+<div align="center">
+
+![License](https://img.shields.io/github/license/britsync07-prog/brit-os?style=flat-square&label=license&color=06b6d4) ![Language](https://img.shields.io/github/languages/top/britsync07-prog/brit-os?style=flat-square&color=0ea5e9) ![Stars](https://img.shields.io/github/stars/britsync07-prog/brit-os?style=flat-square&color=f59e0b) ![Last commit](https://img.shields.io/github/last-commit/britsync07-prog/brit-os?style=flat-square&color=22c55e) ![Repo size](https://img.shields.io/github/repo-size/britsync07-prog/brit-os?style=flat-square&color=94a3b8)
+
+</div>
+
 
 **Not a website. An operating system.**
 
