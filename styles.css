@@ -282,6 +282,8 @@ body {
 .proj-card:hover { border-color: var(--violet); transform: translateX(4px); }
 .proj-card b { font-size: 14.5px; }
 .proj-card p { color: #b9b9cf; font-size: 13px; margin: 4px 0 8px; }
+.proj-card.clickable { cursor: pointer; }
+.proj-card.clickable:hover { border-color: var(--pink); transform: translateX(6px); }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 9px; }
 .chip {
   font-size: 11px; padding: 3px 9px; border-radius: 20px;

@@ -322,8 +322,18 @@ function wireExplorer() {
       main.innerHTML = `<h3>\uD83D\uDCC4 ${item.name}</h3><div class="notepad-view">${item.body}</div>`;
     } else {
       const kids = EXPLORER.filter((x) => x.parent === item.name);
-      main.innerHTML = `<h3>\uD83D\uDCBE ${pathOf(item)}</h3><div class="ep-desc">${kids.length} item(s)</div>` +
-        kids.map((k) => `<div class="proj-card"><b>${k.type === "file" ? "\uD83D\uDCC4" : "\uD83D\uDCC1"} ${k.name}</b></div>`).join("");
+      main.innerHTML = `<h3>\uD83D\uDCBE ${pathOf(item)}</h3>
+        <div class="ep-desc">${kids.length} item(s) — double-click or click to open</div>`;
+      kids.forEach((k) => {
+        const idx = EXPLORER.indexOf(k);
+        const card = document.createElement("div");
+        card.className = "proj-card clickable";
+        card.innerHTML = `<b>${k.type === "file" ? "\uD83D\uDCC4" : "\uD83D\uDCC1"} ${k.name}</b>` +
+          (k.ref && k.ref.desc ? `<p>${k.ref.desc}</p>` : "") +
+          (k.type === "file" ? `<p class="ep-desc" style="margin:4px 0 0">text document — click to read</p>` : "");
+        card.addEventListener("click", () => { beep(600, 0.04); renderMain(idx); });
+        main.appendChild(card);
+      });
     }
   }
   renderMain(EXPLORER.findIndex((x) => x.name === "saimon"));
