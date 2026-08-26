@@ -119,7 +119,15 @@ function runBoot() {
       const t = setInterval(() => {
         p += Math.random() * 18 + 6;
         $("#boot-bar").style.width = Math.min(p, 100) + "%";
-        if (p >= 100) { clearInterval(t); $("#boot-prompt").style.display = "block"; armBootSkip(); }
+        if (p >= 100) {
+          clearInterval(t);
+          const coarse = window.matchMedia("(pointer: coarse)").matches || isMobile();
+          $("#boot-prompt").innerHTML = coarse
+            ? "Tap anywhere to continue <span class='blink'>▾</span>"
+            : "Press any key to continue<span class='blink'>_</span>";
+          $("#boot-prompt").style.display = "block";
+          armBootSkip();
+        }
       }, 130);
       return;
     }

@@ -566,6 +566,34 @@ body {
   .window { left: 2vw !important; top: 2vh !important; width: 96vw !important; height: calc(100vh - 120px) !important; }
   #start-menu { width: calc(100vw - 24px); left: 12px; }
   .pin-grid { grid-template-columns: repeat(4, 1fr); }
-  .exp-side { width: 130px; }
   .login-card h1 { font-size: 20px; padding: 0 14px; }
+
+  /* boot */
+  #boot-screen { padding: 22px; font-size: 12.5px; }
+  #boot-prompt { font-size: 16px; color: #bbb; }
+
+  /* taskbar: slim down */
+  #taskbar { gap: 5px; padding: 0 8px; height: 52px; }
+  #start-btn { width: 38px; height: 38px; font-size: 17px; }
+  #perf-widget, #show-desktop, #tray-net, #tray-bat { display: none !important; }
+  .tb-pin[data-app="notepad"], .tb-pin[data-app="settings"] { display: none; }
+  .tb-pin { width: 35px; height: 37px; font-size: 15px; }
+  #tb-center { gap: 2px; }
+  #tray { gap: 5px; margin-left: auto; }
+  #tray-date { display: none; }
+  #tray-clock { padding: 4px 7px; }
+  #clock { font-size: 12.5px; }
+  .tray-ic { font-size: 14px; padding: 5px 3px; }
+
+  /* flyouts fit small screens */
+  .tb-pop { width: calc(100vw - 24px); max-width: 340px; right: 12px; }
+
+  /* explorer: sidebar hidden, toolbar nav only */
+  .exp-side { display: none !important; }
+  .exp-tools { padding: 8px 10px; gap: 5px; }
+  .exp-btn { width: 30px; height: 28px; }
+  .exp-addr { font-size: 11.5px; padding: 5px 9px; }
+
+  /* start menu grid */
+  .rec-row { grid-template-columns: 1fr; }
 }
