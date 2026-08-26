@@ -289,7 +289,7 @@ function wireExplorer() {
     EXPLORER.forEach((item, idx) => {
       const depth = item.parent ? pathByName(item.parent).split("\\").length : 0;
       const d = document.createElement("div");
-      d.textContent = (item.type === "project" ? "[DIR] " : item.type === "file" ? "[FILE] " : "[DRV] ") + item.name;
+      d.textContent = (item.type === "project" ? "\uD83D\uDCC1 " : item.type === "file" ? "\uD83D\uDCC4 " : "\uD83D\uDCBE ") + item.name;
       d.style.paddingLeft = 10 + depth * 14 + "px";
       if (idx === active) d.classList.add("on");
       d.addEventListener("click", () => renderMain(idx));
@@ -305,11 +305,11 @@ function wireExplorer() {
         <div class="chips">${p.stack.map((s) => `<span class="chip">${s}</span>`).join("")}</div>
         <a class="gh-link" href="${PROFILE.github}/${p.repo}" target="_blank" rel="noopener">Open repository ↗</a>`;
     } else if (item.type === "file") {
-      main.innerHTML = `<h3>${item.name}</h3><div class="notepad-view">${item.body}</div>`;
+      main.innerHTML = `<h3>\uD83D\uDCC4 ${item.name}</h3><div class="notepad-view">${item.body}</div>`;
     } else {
       const kids = EXPLORER.filter((x) => x.parent === item.name);
-      main.innerHTML = `<h3>${pathOf(item)}</h3><div class="ep-desc">${kids.length} item(s)</div>` +
-        kids.map((k) => `<div class="proj-card"><b>${k.type === "file" ? "[FILE]" : "[DIR]"} ${k.name}</b></div>`).join("");
+      main.innerHTML = `<h3>\uD83D\uDCBE ${pathOf(item)}</h3><div class="ep-desc">${kids.length} item(s)</div>` +
+        kids.map((k) => `<div class="proj-card"><b>${k.type === "file" ? "\uD83D\uDCC4" : "\uD83D\uDCC1"} ${k.name}</b></div>`).join("");
     }
   }
   renderMain(EXPLORER.findIndex((x) => x.name === "saimon"));
