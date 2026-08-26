@@ -219,14 +219,16 @@ function focusWin(appId) {
     o.el.classList.toggle("focused", id === appId);
     o.task.classList.toggle("active", id === appId && !o.el.classList.contains("minimized"));
   });
+  if (typeof syncPins === "function") syncPins();
   if (appId === "skills") animateSkills();
 }
-function minimizeWin(id) { const w = openWins[id]; if (!w) return; w.el.classList.add("minimized"); w.el.style.display = "none"; w.task.classList.remove("active"); }
+function minimizeWin(id) { const w = openWins[id]; if (!w) return; w.el.classList.add("minimized"); w.el.style.display = "none"; w.task.classList.remove("active"); if (typeof syncPins === "function") syncPins(); }
 function maximizeWin(id) { const w = openWins[id]; if (!w) return; w.el.classList.toggle("maximized"); }
 function closeWin(id) {
   const w = openWins[id]; if (!w) return;
   if (closeHooks[id]) { closeHooks[id](); delete closeHooks[id]; }
   w.el.remove(); w.task.remove(); delete openWins[id];
+  if (typeof syncPins === "function") syncPins();
   beep(300, 0.06);
 }
 function makeDraggable(win, bar) {
@@ -851,6 +853,106 @@ $$(".dicon").forEach((d) => {
     setTimeout(() => d.classList.remove("selected"), 350);
   });
 });
+
+/* ---------------- TASKBAR EXTRAS ---------------- */
+function syncPins() {
+  $$(".tb-pin").forEach((b) => {
+    const w = openWins[b.dataset.app];
+    b.classList.toggle("running", !!w);
+  });
+}
+$$(".tb-pin").forEach((b) => b.addEventListener("click", () => APPS[b.dataset.app]()));
+
+/* popovers */
+const calFly = $("#cal-flyout"), qsFly = $("#qs-flyout");
+function togglePop(p) { [calFly, qsFly].forEach((x) => { if (x !== p) x.classList.add("hidden"); }); p.classList.toggle("hidden"); }
+document.addEventListener("click", (e) => {
+  if (!e.target.closest("#tray-clock")) calFly.classList.add("hidden");
+  if (!e.target.closest("#tray-vol") && !e.target.closest("#qs-flyout")) qsFly.classList.add("hidden");
+});
+
+/* clock → calendar flyout */
+let fcView = new Date();
+$("#tray-clock").addEventListener("click", (e) => {
+  e.stopPropagation();
+  togglePop(calFly);
+  fcView = new Date();
+  renderFlyCal();
+});
+function renderFlyCal() {
+  const y = fcView.getFullYear(), m = fcView.getMonth(), today = new Date();
+  $("#fc-bigday").innerHTML =
+    `${today.toLocaleDateString([], { weekday: "long" })}<br><b>${today.getDate()}</b><small>${today.toLocaleDateString([], { month: "long", year: "numeric" })}</small>`;
+  $("#fc-title").textContent = fcView.toLocaleDateString([], { month: "long", year: "numeric" });
+  const g = $("#fc-grid");
+  const DOWS = ["Su","Mo","Tu","We","Th","Fr","Sa"];
+  g.innerHTML = DOWS.map((d) => `<div class="cal-dow">${d}</div>`).join("");
+  const first = new Date(y, m, 1).getDay(), days = new Date(y, m + 1, 0).getDate(), prevDays = new Date(y, m, 0).getDate();
+  for (let i = first - 1; i >= 0; i--) g.insertAdjacentHTML("beforeend", `<div class="cal-day dim">${prevDays - i}</div>`);
+  for (let d = 1; d <= days; d++) {
+    const isT = d === today.getDate() && m === today.getMonth() && y === today.getFullYear();
+    g.insertAdjacentHTML("beforeend", `<div class="cal-day${isT ? " today" : ""}">${d}</div>`);
+  }
+  const rem = (7 - (g.children.length % 7)) % 7;
+  for (let d = 1; d <= rem; d++) g.insertAdjacentHTML("beforeend", `<div class="cal-day dim">${d}</div>`);
+}
+$("#fc-prev").addEventListener("click", (e) => { e.stopPropagation(); fcView = new Date(fcView.getFullYear(), fcView.getMonth() - 1, 1); renderFlyCal(); });
+$("#fc-next").addEventListener("click", (e) => { e.stopPropagation(); fcView = new Date(fcView.getFullYear(), fcView.getMonth() + 1, 1); renderFlyCal(); });
+
+/* quick settings flyout */
+function renderQS() {
+  const s = getSettings();
+  $("#qs-body").innerHTML = `
+    <div class="qs-tiles">
+      <div class="qs-tile on"><span>📶</span><small>BritNet</small></div>
+      <div class="qs-tile ${s.snd !== false ? "on" : ""}" id="q-snd"><span>${s.snd !== false ? "🔊" : "🔇"}</span><small>Sound</small></div>
+      <div class="qs-tile ${s.crt ? "on" : ""}" id="q-crt"><span>🖥️</span><small>CRT</small></div>
+      <div class="qs-tile" id="q-air"><span>✈️</span><small>Airplane</small></div>
+    </div>
+    <div class="qs-row"><span>Accent</span>
+      <span class="qs-dots">${Object.keys(ACCENTS).map((k) =>
+        `<i class="qs-dot${(s.accent || "aqua") === k ? " on" : ""}" data-a="${k}" style="background:${ACCENTS[k].css}"></i>`).join("")}</span></div>
+    <div class="qs-row"><span>🔋 Battery</span><b style="color:#4ade80">87% — plugged in</b></div>`;
+  $("#q-snd").addEventListener("click", () => { updSettings({ snd: !(getSettings().snd !== false) }); renderQS(); });
+  $("#q-crt").addEventListener("click", () => { updSettings({ crt: !getSettings().crt }); renderQS(); });
+  $("#q-air").addEventListener("click", () => $("#q-air").classList.toggle("on"));
+  $$(".qs-dot").forEach((d) => d.addEventListener("click", () => { updSettings({ accent: d.dataset.a }); renderQS(); }));
+}
+$("#tray-vol").addEventListener("click", (e) => { e.stopPropagation(); togglePop(qsFly); renderQS(); });
+
+/* perf widget */
+(function perfWidget() {
+  const cv = $("#perf-cv"); if (!cv) return;
+  const ctx = cv.getContext("2d");
+  const data = Array(24).fill(15);
+  setInterval(() => {
+    const v = Math.max(4, Math.min(92, data[data.length - 1] + (Math.random() * 18 - 9)));
+    data.push(v); data.shift();
+    const w = cv.width, h = cv.height;
+    ctx.clearRect(0, 0, w, h);
+    ctx.beginPath();
+    data.forEach((d, i) => { const x = i * (w / (data.length - 1)), yy = h - (d / 100) * h; i ? ctx.lineTo(x, yy) : ctx.moveTo(x, yy); });
+    ctx.strokeStyle = "#06b6d4"; ctx.lineWidth = 1.5; ctx.stroke();
+    ctx.lineTo(w, h); ctx.lineTo(0, h); ctx.closePath();
+    ctx.fillStyle = "rgba(6,182,212,.16)"; ctx.fill();
+    $("#perf-val").textContent = Math.round(v) + "%";
+  }, 900);
+})();
+
+/* show desktop */
+let savedShown = null;
+$("#show-desktop").addEventListener("click", () => {
+  const vis = Object.keys(openWins).filter((id) => !openWins[id].el.classList.contains("minimized"));
+  if (vis.length) { savedShown = vis; vis.forEach(minimizeWin); }
+  else { (savedShown || []).forEach((id) => { if (openWins[id]) focusWin(id); }); savedShown = null; }
+});
+
+/* shared settings updater for flyout */
+function updSettings(patch) {
+  const ns = Object.assign(getSettings(), patch);
+  saveSettings(ns); applySettings(ns);
+  SND_ON = ns.snd !== false;
+}
 
 /* ---------------- INIT ---------------- */
 applySettings(Object.assign({ accent: "aqua", wall: "aurora", crt: false, snd: true }, getSettings()));

@@ -92,8 +92,33 @@
   <div id="taskbar">
     <button id="start-btn" title="Start"><span class="orb-glyph">⊞</span></button>
     <div id="task-windows"></div>
-    <div id="tray"><div id="tray-clock"><span id="clock"></span><span id="tray-date"></span></div></div>
+    <div id="tb-center">
+      <button class="tb-pin" data-app="terminal" title="Terminal">⌨️</button>
+      <button class="tb-pin" data-app="projects" title="Projects">🚀</button>
+      <button class="tb-pin" data-app="explorer" title="My Works">📁</button>
+      <button class="tb-pin" data-app="calculator" title="Calculator">🧮</button>
+      <button class="tb-pin" data-app="notepad" title="Notepad">📝</button>
+      <button class="tb-pin" data-app="settings" title="Settings">⚙️</button>
+    </div>
+    <div id="tray">
+      <div id="perf-widget" title="System performance"><canvas id="perf-cv" width="72" height="22"></canvas><span id="perf-val">15%</span></div>
+      <span class="tray-ic" id="tray-net" title="BritNet — connected">📶</span>
+      <span class="tray-ic" id="tray-vol" title="Quick settings">🔊</span>
+      <span class="tray-ic" id="tray-bat" title="Battery 87%">🔋</span>
+      <div id="tray-clock" title="Calendar"><span id="clock"></span><span id="tray-date"></span></div>
+    </div>
+    <div id="show-desktop" title="Show desktop"></div>
   </div>
+
+  <!-- CALENDAR FLYOUT -->
+  <div id="cal-flyout" class="tb-pop hidden">
+    <div class="fly-big" id="fc-bigday"></div>
+    <div class="fly-month-head"><b id="fc-title"></b><span><i class="fc-nav" id="fc-prev">‹</i><i class="fc-nav" id="fc-next">›</i></span></div>
+    <div class="cal-grid fly-grid" id="fc-grid"></div>
+  </div>
+
+  <!-- QUICK SETTINGS FLYOUT -->
+  <div id="qs-flyout" class="tb-pop hidden"><div id="qs-body"></div></div>
 </div>
 
 <!-- ============ BSOD ============ -->

@@ -490,6 +490,73 @@ body {
 /* matrix rain overlay */
 #matrix-canvas { position: fixed; inset: 0; z-index: 1500; }
 
+/* ============ TASKBAR EXTRAS ============ */
+#tb-center { display: flex; gap: 4px; margin: 0 8px; }
+.tb-pin {
+  position: relative; width: 38px; height: 40px; border: none; border-radius: 10px;
+  background: transparent; font-size: 17px; cursor: pointer;
+  transition: background .13s, transform .13s;
+}
+.tb-pin:hover { background: rgba(255,255,255,.1); transform: translateY(-2px); }
+.tb-pin.running::after {
+  content: ""; position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%);
+  width: 14px; height: 3px; border-radius: 2px; background: var(--accent-grad);
+}
+#tray { display: flex; align-items: center; gap: 9px; }
+.tray-ic { font-size: 15px; cursor: pointer; padding: 6px 4px; border-radius: 7px; transition: background .12s; }
+.tray-ic:hover { background: rgba(255,255,255,.12); }
+#perf-widget {
+  display: flex; align-items: center; gap: 5px; padding: 4px 8px;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); border-radius: 8px;
+}
+#perf-cv { display: block; }
+#perf-val { font-size: 10.5px; color: var(--muted); font-variant-numeric: tabular-nums; min-width: 26px; }
+#tray-clock { display: flex; flex-direction: column; align-items: flex-end; cursor: pointer; padding: 5px 9px; border-radius: 8px; line-height: 1.25; transition: background .12s; }
+#tray-clock:hover { background: rgba(255,255,255,.12); }
+#tray-date { color: var(--muted); font-size: 11px; }
+#show-desktop {
+  width: 9px; align-self: stretch; margin: 5px 0; cursor: pointer;
+  border-left: 1px solid rgba(255,255,255,.16); border-radius: 2px; transition: background .12s;
+}
+#show-desktop:hover { background: rgba(6,182,212,.35); }
+
+/* flyouts */
+.tb-pop {
+  position: absolute; bottom: 66px; right: 12px; z-index: 600;
+  width: 320px; max-height: calc(100vh - 90px); overflow-y: auto;
+  background: rgba(15,15,28,.97); backdrop-filter: blur(24px);
+  border: 1px solid rgba(139,92,246,.38); border-color: rgba(6,182,212,.4);
+  border-radius: 16px; box-shadow: 0 24px 80px rgba(0,0,0,.75);
+  animation: smrise .16s cubic-bezier(.2,.9,.3,1.2);
+}
+.fly-big { padding: 14px 16px 4px; font-size: 13px; color: var(--muted); }
+.fly-big b { display: block; font-size: 34px; color: var(--text); line-height: 1.15; }
+.fly-big small { color: var(--violet); font-weight: 600; }
+.fly-month-head { display: flex; justify-content: space-between; align-items: center; padding: 8px 16px 2px; font-size: 12.5px; }
+.fc-nav { font-style: normal; cursor: pointer; padding: 2px 8px; border-radius: 6px; margin-left: 4px; }
+.fc-nav:hover { background: rgba(6,182,212,.3); }
+.fly-grid { padding: 0 10px 12px !important; }
+.qs-tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; padding: 14px; }
+.qs-tile {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 11px 4px; border-radius: 11px; cursor: pointer; user-select: none;
+  background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.09);
+  transition: background .14s, border-color .14s, transform .14s;
+}
+.qs-tile span { font-size: 19px; } .qs-tile small { font-size: 10.5px; color: var(--muted); }
+.qs-tile:hover { transform: translateY(-2px); }
+.qs-tile.on { background: rgba(6,182,212,.24); border-color: var(--violet); }
+.qs-tile.on small { color: var(--text); }
+.qs-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 11px 16px; font-size: 12.5px; color: #c9c9de;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.qs-dots { display: flex; gap: 7px; }
+.qs-dot { width: 20px; height: 20px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: transform .13s, border-color .13s; }
+.qs-dot:hover { transform: scale(1.15); }
+.qs-dot.on { border-color: #fff; }
+
 /* ============ MOBILE ============ */
 @media (max-width: 720px) {
   .window { left: 2vw !important; top: 2vh !important; width: 96vw !important; height: calc(100vh - 120px) !important; }
