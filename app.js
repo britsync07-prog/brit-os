@@ -548,7 +548,7 @@ const ACCENTS = {
 const WALLS = ["aurora", "midnight", "emberfall"];
 
 function applySettings(s) {
-  const a = ACCENTS[s.accent] || ACCENTS.neon;
+  const a = ACCENTS[s.accent] || ACCENTS.aqua;
   const r = document.documentElement.style;
   r.setProperty("--indigo", a.indigo);
   r.setProperty("--violet", a.violet);
