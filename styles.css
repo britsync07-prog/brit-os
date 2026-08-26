@@ -307,7 +307,23 @@ body {
 .skill-fill { height: 100%; width: 0; background: var(--accent-grad); border-radius: 6px; transition: width 1s cubic-bezier(.25,.9,.3,1); }
 
 /* explorer */
-.explore { display: flex; height: 100%; gap: 0; margin: -16px; }
+.explore { display: flex; height: calc(100% - 49px); gap: 0; margin: -16px; margin-top: 0; }
+.exp-tools {
+  display: flex; align-items: center; gap: 7px;
+  padding: 9px 12px; border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.exp-btn {
+  width: 32px; height: 29px; border-radius: 8px; border: none;
+  background: rgba(255,255,255,.07); color: var(--text); font-size: 14px; cursor: pointer;
+  transition: background .13s, transform .13s;
+}
+.exp-btn:hover:not(:disabled) { background: rgba(6,182,212,.32); transform: translateY(-1px); }
+.exp-btn:disabled { opacity: .32; cursor: default; }
+.exp-addr {
+  flex: 1; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.09);
+  border-radius: 8px; padding: 6px 12px; font-family: Consolas, monospace; font-size: 12.5px;
+  color: #c9c9de; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; user-select: none;
+}
 .exp-side {
   width: 190px; flex-shrink: 0; background: rgba(255,255,255,.03);
   border-right: 1px solid rgba(255,255,255,.07); padding: 12px 8px;

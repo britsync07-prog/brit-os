@@ -291,13 +291,31 @@ const EXPLORER = [
     body: "\n[x] Build a vault nobody can peek into\n[x] Automate a trading desk\n[x] Run a CRM in production\n[ ] 100k emails/day infrastructure\n[ ] An OS portfolio (you are looking at it)\n" },
 ];
 function appExplorer() {
-  createWindow("explorer", "My Works — File Explorer", "\uD83D\uDCC1", `<div class="explore"><div class="exp-side" id="exp-side"></div><div class="exp-main" id="exp-main"></div></div>`, 700, 490);
+  createWindow("explorer", "My Works — File Explorer", "\uD83D\uDCC1",
+    `<div class="exp-tools">
+       <button class="exp-btn" id="exp-back" title="Back">&larr;</button>
+       <button class="exp-btn" id="exp-fwd" title="Forward">&rarr;</button>
+       <button class="exp-btn" id="exp-up" title="Up one level">&uarr;</button>
+       <div class="exp-addr" id="exp-addr"></div>
+     </div>
+     <div class="explore"><div class="exp-side" id="exp-side"></div><div class="exp-main" id="exp-main"></div></div>`, 720, 520);
   wireExplorer(); beep(660, 0.05);
 }
 function wireExplorer() {
   const side = $("#exp-side"), main = $("#exp-main");
+  const backB = $("#exp-back"), fwdB = $("#exp-fwd"), upB = $("#exp-up"), addr = $("#exp-addr");
   const pathOf = (item) => (item.parent ? pathByName(item.parent) + "\\" + item.name : item.name);
   function pathByName(n) { const it = EXPLORER.find((x) => x.name === n); return it ? pathOf(it) : n; }
+
+  const startIndex = Math.max(0, EXPLORER.findIndex((x) => x.name === "saimon"));
+  let hist = [startIndex], ptr = 0;
+
+  function updateChrome(item) {
+    addr.textContent = item.type === "drive" ? "C:\\" : pathOf(item);
+    backB.disabled = ptr === 0;
+    fwdB.disabled = ptr >= hist.length - 1;
+    upB.disabled = !item.parent;
+  }
   function renderSide(active) {
     side.innerHTML = "";
     EXPLORER.forEach((item, idx) => {
@@ -306,13 +324,14 @@ function wireExplorer() {
       d.textContent = (item.type === "project" ? "\uD83D\uDCC1 " : item.type === "file" ? "\uD83D\uDCC4 " : "\uD83D\uDCBE ") + item.name;
       d.style.paddingLeft = 10 + depth * 14 + "px";
       if (idx === active) d.classList.add("on");
-      d.addEventListener("click", () => renderMain(idx));
+      d.addEventListener("click", () => { if (idx !== ptr) navigate(idx); });
       side.appendChild(d);
     });
   }
-  function renderMain(idx) {
+  function show(idx) {
     const item = EXPLORER[idx];
     renderSide(idx);
+    updateChrome(item);
     if (item.type === "project") {
       const p = item.ref;
       main.innerHTML = `<h3>${p.icon} ${p.name}</h3><div class="ep-desc">${p.desc}</div>
@@ -323,7 +342,7 @@ function wireExplorer() {
     } else {
       const kids = EXPLORER.filter((x) => x.parent === item.name);
       main.innerHTML = `<h3>\uD83D\uDCBE ${pathOf(item)}</h3>
-        <div class="ep-desc">${kids.length} item(s) — double-click or click to open</div>`;
+        <div class="ep-desc">${kids.length} item(s) — click to open</div>`;
       kids.forEach((k) => {
         const idx = EXPLORER.indexOf(k);
         const card = document.createElement("div");
@@ -331,12 +350,26 @@ function wireExplorer() {
         card.innerHTML = `<b>${k.type === "file" ? "\uD83D\uDCC4" : "\uD83D\uDCC1"} ${k.name}</b>` +
           (k.ref && k.ref.desc ? `<p>${k.ref.desc}</p>` : "") +
           (k.type === "file" ? `<p class="ep-desc" style="margin:4px 0 0">text document — click to read</p>` : "");
-        card.addEventListener("click", () => { beep(600, 0.04); renderMain(idx); });
+        card.addEventListener("click", () => navigate(idx));
         main.appendChild(card);
       });
     }
   }
-  renderMain(EXPLORER.findIndex((x) => x.name === "saimon"));
+  function navigate(idx) {
+    if (idx === hist[ptr]) return;
+    hist = hist.slice(0, ptr + 1);
+    hist.push(idx); ptr++;
+    show(idx); beep(600, 0.04);
+  }
+  backB.addEventListener("click", () => { if (ptr > 0) { ptr--; show(hist[ptr]); beep(500, 0.04); } });
+  fwdB.addEventListener("click", () => { if (ptr < hist.length - 1) { ptr++; show(hist[ptr]); beep(500, 0.04); } });
+  upB.addEventListener("click", () => {
+    const it = EXPLORER[hist[ptr]];
+    if (!it.parent) return;
+    const pi = EXPLORER.findIndex((x) => x.name === it.parent);
+    if (pi >= 0) navigate(pi);
+  });
+  show(startIndex);
 }
 
 /* terminal */
