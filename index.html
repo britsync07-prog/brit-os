@@ -29,7 +29,10 @@
 
 <!-- ============ DESKTOP ============ -->
 <div id="desktop" class="hidden">
-  <div id="wallpaper"></div>
+  <div id="wallpaper">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+  </div>
 
   <div id="icons">
     <div class="dicon" data-app="about"><span class="iico">📄</span><span>About.txt</span></div>
@@ -45,28 +48,51 @@
 
   <!-- START MENU -->
   <div id="start-menu" class="hidden">
-    <div class="sm-head">
-      <div class="avatar sm-avatar"><img src="https://avatars.githubusercontent.com/u/254318047?s=96&v=4" alt=""></div>
-      <div><b>saimon@britos</b><br><small>Administrator</small></div>
+    <div class="sm-search">
+      <span>🔎</span>
+      <input id="sm-q" placeholder="Search apps, projects, commands..." autocomplete="off">
     </div>
-    <div class="sm-items">
-      <div data-app="about">📄 About.txt</div>
-      <div data-app="projects">🚀 Projects</div>
-      <div data-app="skills">📊 Skills.exe</div>
-      <div data-app="explorer">📁 My Works</div>
-      <div data-app="terminal">⌨️ Terminal</div>
-      <div data-app="contact">📬 Contact</div>
-      <hr>
-      <div id="sm-restart">🔁 Restart</div>
-      <div id="sm-shutdown">⏻ Shut Down</div>
+    <div id="sm-home">
+      <div class="sm-section-label">Pinned</div>
+      <div class="pin-grid">
+        <button class="pin" data-app="projects"><span>🚀</span>Projects</button>
+        <button class="pin" data-app="explorer"><span>📁</span>My Works</button>
+        <button class="pin" data-app="terminal"><span>⌨️</span>Terminal</button>
+        <button class="pin" data-app="skills"><span>📊</span>Skills</button>
+        <button class="pin" data-app="calculator"><span>🧮</span>Calculator</button>
+        <button class="pin" data-app="calendar"><span>📅</span>Calendar</button>
+        <button class="pin" data-app="notepad"><span>📝</span>Notepad</button>
+        <button class="pin" data-app="settings"><span>⚙️</span>Settings</button>
+      </div>
+      <div class="sm-section-label">Recommended</div>
+      <div class="rec-row">
+        <button class="rec" data-app="about"><span class="ri">📄</span><span class="rt"><b>About.txt</b><small>who is saimon</small></span></button>
+        <button class="rec" data-app="contact"><span class="ri">📬</span><span class="rt"><b>Contact</b><small>say hello</small></span></button>
+        <button class="rec" data-app="taskmgr"><span class="ri">🖥️</span><span class="rt"><b>Task Manager</b><small>processes</small></span></button>
+        <button class="rec" data-app="recycle"><span class="ri">🗑️</span><span class="rt"><b>Recycle Bin</b><small>do not open</small></span></button>
+      </div>
+    </div>
+    <div id="sm-results" class="hidden"></div>
+    <div class="sm-foot">
+      <div class="sm-user">
+        <div class="avatar sm-avatar"><img src="https://avatars.githubusercontent.com/u/254318047?s=96&v=4" alt=""></div>
+        <div class="su-t"><b>saimon@britos</b><br><small>Administrator</small></div>
+      </div>
+      <div class="power-wrap">
+        <button id="power-btn" title="Power">⏻</button>
+        <div id="power-pop" class="hidden">
+          <div id="pp-restart">🔁 Restart</div>
+          <div id="pp-shutdown">⏻ Shut down</div>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- TASKBAR -->
   <div id="taskbar">
-    <button id="start-btn">⊞ Start</button>
+    <button id="start-btn" title="Start"><span class="orb-glyph">⊞</span></button>
     <div id="task-windows"></div>
-    <div id="tray"><span id="clock"></span></div>
+    <div id="tray"><div id="tray-clock"><span id="clock"></span><span id="tray-date"></span></div></div>
   </div>
 </div>
 
