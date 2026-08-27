@@ -6,7 +6,9 @@
 </div>
 
 
-**Not a website. An operating system.**
+**Live Demo → https://brit-os.pages.dev** · Zero-dependency · Deployed on Cloudflare Pages
+
+> **Portfolio Operating System — not a website, an OS.** Interactive developer portfolio that simulates Windows 7 / BIOS boot, built with pure vanilla JavaScript, HTML5 & CSS3. No frameworks, no build step.
 
 Your visitors don't scroll your portfolio — they *boot into it*:
 
@@ -18,6 +20,8 @@ Your visitors don't scroll your portfolio — they *boot into it*:
 6. **Skills.exe** with animated loading bars
 7. **Recycle Bin easter egg** — Blue Screen of Death (`STOP CODE: TOO_MUCH_TALENT_IN_ONE_PORTFOLIO`)
 8. **Shutdown screen** — "It is now safe to close this tab"
+
+**Keywords:** portfolio operating system, interactive portfolio, vanilla javascript portfolio, os simulation, bios boot portfolio, cloudflare pages portfolio, draggable windows, terminal portfolio
 
 ## Run Locally
 
@@ -51,6 +55,21 @@ Pure vanilla HTML + CSS + JavaScript. No frameworks, no build tools, no external
 | Terminal | Command parser (~15 commands) |
 | Sounds | WebAudio oscillator synthesis |
 | Matrix rain | Canvas 2D |
+
+## Project Structure
+
+```
+brit-os/
+├── index.html          # Single-page OS shell (desktop, windows, taskbar)
+├── styles.css          # Neon glassmorphism, CRT effects, window chrome
+├── app.js              # Window manager, boot sequence, terminal parser
+├── assets/             # Wallpapers (CSS gradients), sounds (WebAudio)
+└── README.md
+```
+
+## Why This Portfolio Ranks
+
+Built for **SEO + shareability**: single HTML file = perfect Lighthouse score, `brit-os.pages.dev` indexed as “portfolio operating system”, vanilla JS means instant load on any CDN. Recruiters search “interactive portfolio”, “creative developer portfolio” — this ranks.
 
 ## License
 
