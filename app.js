@@ -11,7 +11,7 @@ const isMobile = () => window.matchMedia("(max-width: 720px)").matches;
 const PROFILE = {
   name: "Musfiqur Rahman Saimon",
   role: "Full-Stack Product Engineer",
-  email: "mdsaimon552723@gmail.com",
+  email: "saimon@ascentraconsulting.co.uk",
   github: "https://github.com/britsync07-prog",
 };
 
