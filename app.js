@@ -443,6 +443,20 @@ function wireTerminal() {
   }
 }
 
+function appCV() {
+  const html = `
+    <div style="height:100%;display:flex;flex-direction:column;gap:0">
+      <div style="padding:8px 10px;background:#f1f5f9;border-bottom:1px solid #e2e8f0;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <a class="gh-link" href="./Musfiqur_Rahman_Saimon_Resume.pdf" target="_blank" rel="noopener" style="margin:0">Open in new tab ↗</a>
+        <a class="gh-link" href="./Musfiqur_Rahman_Saimon_Resume.pdf" download style="margin:0">Download ↓</a>
+        <span style="margin-left:auto;color:#64748b;font-size:12px">PDF · 1 page · A4</span>
+      </div>
+      <iframe src="./Musfiqur_Rahman_Saimon_Resume.pdf" title="CV — Musfiqur Rahman Saimon" style="flex:1;border:none;width:100%;background:#fff"></iframe>
+    </div>`;
+  createWindow("cv", "CV.pdf — Musfiqur Rahman Saimon", "\uD83D\uDCC4", html, 760, 640);
+  beep(700, 0.05);
+}
+
 function appContact() {
   const html = `
     <div class="contact-grid">
@@ -734,14 +748,14 @@ function startMatrix() {
 
 /* ---------------- APP REGISTRY ---------------- */
 const APPS = {
-  about: appAbout, projects: appProjects, skills: appSkills, explorer: appExplorer,
+  about: appAbout, cv: appCV, projects: appProjects, skills: appSkills, explorer: appExplorer,
   terminal: appTerminal, contact: appContact, recycle: appRecycle,
   calculator: appCalculator, calendar: appCalendar, notepad: appNotepad,
   settings: appSettings, taskmgr: appTaskMgr,
 };
 
 const APP_META = {
-  about: ["\uD83D\uDCC4", "About.txt"], projects: ["\uD83D\uDE80", "Projects"], skills: ["\uD83D\uDCCA", "Skills.exe"],
+  about: ["\uD83D\uDCC4", "About.txt"], cv: ["\uD83D\uDCC4", "CV.pdf"], projects: ["\uD83D\uDE80", "Projects"], skills: ["\uD83D\uDCCA", "Skills.exe"],
   explorer: ["\uD83D\uDCC1", "My Works"], terminal: ["\u2328\uFE0F", "Terminal"], contact: ["\uD83D\uDCEC", "Contact"],
   recycle: ["\uD83D\uDDD1\uFE0F", "Recycle Bin"], calculator: ["\uD83E\uDDEE", "Calculator"], calendar: ["\uD83D\uDCC5", "Calendar"],
   notepad: ["\uD83D\uDCDD", "Notepad"], settings: ["\u2699\uFE0F", "Settings"], taskmgr: ["\uD83D\uDDA5\uFE0F", "Task Manager"],
