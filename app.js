@@ -13,6 +13,7 @@ const PROFILE = {
   role: "Full-Stack Product Engineer",
   email: "saimon@ascentraconsulting.co.uk",
   github: "https://github.com/britsync07-prog",
+  linkedin: "https://www.linkedin.com/in/musfiqur-rahman-saimon-a5994b3aa",
 };
 
 const PROJECTS = [
@@ -462,6 +463,7 @@ function appContact() {
     <div class="contact-grid">
       <a class="ccard" href="mailto:${PROFILE.email}"><span class="ci">\u2709\uFE0F</span><b>Email</b><small>${PROFILE.email}</small></a>
       <a class="ccard" href="${PROFILE.github}" target="_blank" rel="noopener"><span class="ci">\uD83D\uDC19</span><b>GitHub</b><small>Open my GitHub profile ↗</small></a>
+      <a class="ccard" href="${PROFILE.linkedin}" target="_blank" rel="noopener"><span class="ci">\uD83D\uDCBC</span><b>LinkedIn</b><small>Connect on LinkedIn ↗</small></a>
       <a class="ccard" href="#" id="copy-mail"><span class="ci">\uD83D\uDCCB</span><b>Copy Email</b><small>click to copy</small></a>
     </div>
     <p style="margin-top:16px;color:#8a8aa3;font-size:13px">Open for freelance builds, collaborations, and interesting problems.</p>`;
