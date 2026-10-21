@@ -43,6 +43,73 @@ const PROJECTS = [
     stack: ["Puppeteer", "SQLite", "Stripe"] },
 ];
 
+/* ================= DATA SERVICES (hire me) ================= */
+const SERVICES = [
+  {
+    icon: "\u{1F6E0}\uFE0F",
+    name: "Data Mining",
+    tag: "Turn raw data into profit",
+    desc: "I dig through large datasets to find hidden patterns, trends, and relationships — so you can make smarter business decisions instead of guessing.",
+    benefits: ["Pattern & trend discovery", "Customer segmentation", "Market-basket analysis", "Anomaly / fraud detection"],
+    useCase: "Turn messy sales logs into a clear picture of who your best customers are and what they buy next.",
+    cta: "Hire me for data mining"
+  },
+  {
+    icon: "\u{1F4CB}",
+    name: "Data Formatting",
+    tag: "Clean, consistent, ready-to-use",
+    desc: "I take messy, inconsistent data and standardize it — fixing date formats, casing, units, nulls, and structure — so it's analysis-ready the moment you receive it.",
+    benefits: ["Standardized formats", "Cleaned nulls & duplicates", "Consistent units & casing", "Analysis-ready datasets"],
+    useCase: "Convert exported CSVs from 5 different tools into one clean master sheet your team can actually use.",
+    cta: "Hire me for data formatting"
+  },
+  {
+    icon: "\u{1F527}",
+    name: "Data Extraction",
+    tag: "Get the data out, fast",
+    desc: "I extract structured data from websites, PDFs, images, APIs, databases, and legacy files — turning unstructured sources into clean rows and columns you can import anywhere.",
+    benefits: ["Web scraping & scraping queues", "PDF / image extraction", "API data pulls", "Legacy file parsing"],
+    useCase: "Pull 10,000 product listings from competitor sites into a ready-to-import spreadsheet.",
+    cta: "Hire me for data extraction"
+  },
+  {
+    icon: "\u{1F4E5}",
+    name: "Data Collection",
+    tag: "Gather everything in one place",
+    desc: "I design and run collection pipelines that pull data from multiple sources — web, APIs, databases, feeds — into a single reliable destination, on schedule.",
+    benefits: ["Multi-source aggregation", "Scheduled / automated collection", "API & webhook integration", "Database ingestion"],
+    useCase: "Set up a daily pipeline that collects pricing from 20 suppliers into your dashboard automatically.",
+    cta: "Hire me for data collection"
+  },
+  {
+    icon: "\u{1F4CA}",
+    name: "Data Analysis",
+    tag: "Numbers that tell a story",
+    desc: "I analyze your data to surface insights, KPIs, and recommendations — with charts, summaries, and plain-English explanations so you know exactly what to do next.",
+    benefits: ["KPI & metric dashboards", "Statistical summaries", "Trend & forecast analysis", "Plain-English reports"],
+    useCase: "Analyze six months of orders to find your top products, slow seasons, and where customers drop off.",
+    cta: "Hire me for data analysis"
+  },
+  {
+    icon: "\u{1F374}\uFE0F\u200D\u2640\uFE0F",
+    name: "Product Listing",
+    tag: "List it right, sell it fast",
+    desc: "I create and optimize e-commerce product listings — titles, descriptions, attributes, variants, and pricing — formatted and ready to upload to Amazon, Shopify, eBay, Etsy, and more.",
+    benefits: ["SEO-friendly titles & descriptions", "Attribute & variant mapping", "Pricing & SKU setup", "Platform-ready CSV / API upload"],
+    useCase: "List 500 products on Shopify with consistent titles, descriptions, and variants in one batch upload.",
+    cta: "Hire me for product listing"
+  },
+  {
+    icon: "\u{1F469}\u200D\u{1F4BC}",
+    name: "E-commerce Data Entry",
+    tag: "Accurate catalog data, on time",
+    desc: "I handle high-volume e-commerce data entry — product catalogs, inventory updates, order processing, and attribute entry — with accuracy and fast turnaround.",
+    benefits: ["Product catalog entry", "Inventory & stock updates", "Order processing", "Attribute & tag entry"],
+    useCase: "Enter 1,000 SKUs with prices, weights, categories, and images into your store by Friday.",
+    cta: "Hire me for e-commerce data entry"
+  },
+];
+
 const DEVICON = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/";
 const SKILLS = [
   ["TypeScript / JavaScript", 95, ["typescript/typescript-original", "javascript/javascript-original"]],
@@ -55,6 +122,10 @@ const SKILLS = [
   ["Go / Rust (Tauri)", 74, ["go/go-original", "rust/rust-original"]],
   ["DevOps (Docker / Nginx / CI)", 84, ["docker/docker-original", "nginx/nginx-original", "githubactions/githubactions-original"]],
   ["\uD83E\uDD16 AI Agents (MCP)", 80, []],
+  ["\u{1F6E0}\uFE0F Data Mining & Analysis", 90, []],
+  ["\u{1F527} Data Extraction & Collection", 88, []],
+  ["\u{1F4CB} Data Formatting & Cleaning", 92, []],
+  ["\u{1F374}\uFE0F\u200D\u2640\uFE0F Product Listing & E-commerce Data Entry", 85, []],
 ];
 
 const ABOUT_TXT = `> cat about.txt
@@ -70,10 +141,13 @@ real payments, real infrastructure:
   • Payment platforms            (Stripe Connect)
   • AI video pipelines           (FastAPI + MoviePy)
   • Email infrastructure         (custom SMTP relays)
+  • Data mining, extraction & analysis    (insights from any dataset)
+  • Product listing & e-commerce data entry  (catalogs that convert)
 
 I don't stop at "it works on my machine".
 I handle payment flows, deliverability,
-race conditions, and signed auto-updaters.
+race conditions, signed auto-updaters,
+and dirty data you can actually use.
 
 Philosophy:
   "Paper-trade it, test it, then deploy it."
@@ -416,9 +490,10 @@ function wireTerminal() {
     switch (c) {
       case "help":
         print(`available commands:
-  about / projects / skills / socials / contact
+  about / projects / skills / services / socials / contact
   calc | calendar | notepad | settings   launch apps
   whoami | date | echo | clear
+  hire      open services window
   matrix     enter the matrix
   sudo       try your luck
   exit       close terminal`);
@@ -434,9 +509,14 @@ function wireTerminal() {
       case "clear": term.querySelectorAll(".t-out").forEach((n) => n.remove()); break;
       case "calc": case "calendar": case "notepad": case "settings":
         APPS[c === "calc" ? "calculator" : c](); print(`launching ${c}...`); break;
-      case "sudo": print(args.join(" ") === "hire-me"
-        ? "<span class='t-accent'>[PERMISSION GRANTED]</span> smart move. email sent to top of pile: " + PROFILE.email
-        : "nice try. visitor is not in the sudoers file. this incident WILL be reported... to my GitHub."); break;
+      case "services": case "hire":
+        APPS.services(); print("opening Services window..."); break;
+      case "sudo": if (args.join(" ") === "hire-me") {
+        print("<span class='t-accent'>[PERMISSION GRANTED]</span> smart move. Services window opened — email ready.");
+        APPS.services();
+        break;
+      }
+      print("nice try. visitor is not in the sudoers file. this incident WILL be reported... to my GitHub."); break;
       case "matrix": startMatrix(); print("<span class='t-accent'>wake up... follow the white rabbit.</span>"); break;
       case "exit": closeWin("terminal"); break;
       default: print(`'${c.replace(/</g, "&lt;")}' is not recognized. try <span class="t-accent">help</span>`);
@@ -475,6 +555,39 @@ function appContact() {
     beep(800, 0.06);
   });
   beep(700, 0.05);
+}
+
+function appServices() {
+  const list = SERVICES.map((s) => `
+    <div class="svc-card">
+      <div class="svc-head">
+        <span class="svc-icon">${s.icon}</span>
+        <div>
+          <div class="svc-name">${s.name}</div>
+          <div class="svc-tag">${s.tag}</div>
+        </div>
+      </div>
+      <div class="svc-desc">${s.desc}</div>
+      <div class="svc-benefits">
+        ${s.benefits.map((b) => `<span class="chip">\u2713 ${b}</span>`).join("")}
+      </div>
+      <div class="svc-use"><b>Example:</b> ${s.useCase}</div>
+      <a class="svc-cta" href="mailto:${PROFILE.email}?subject=Hire me: ${encodeURIComponent(s.name)}&body=Hi Musfiqur, I'd like to hire you for ${s.name}. Can we talk?" target="_blank" rel="noopener">${s.cta} \u279B</a>
+    </div>
+  `).join("");
+
+  const html = `
+    <div class="services-wrap">
+      <h2 style="margin:0 0 8px 0;color:var(--indigo)">Services — hire me for</h2>
+      <p style="color:#8a8aa3;font-size:13px;margin-bottom:16px">Data, e-commerce, and catalog work I can start for you today.</p>
+      <div class="svc-grid">${list}</div>
+      <div class="svc-footer">
+        <p style="margin:0 0 6px 0;color:#8a8aa3;font-size:12px">Ready to work?</p>
+        <a class="svc-cta big" href="mailto:${PROFILE.email}?subject=Hire me\u2014data &amp; e-commerce services&body=Hi Musfiqur, I saw your portfolio and want to hire you for data mining / extraction / formatting / product listing / e-commerce data entry. What are your rates and availability?" target="_blank" rel="noopener">\u2709\uFE0F Email me to get started</a>
+      </div>
+    </div>`;
+  createWindow("services", "Services — Hire Me", "\u{1F6E0}\uFE0F", html, 700, 620);
+  beep(720, 0.05);
 }
 
 function appRecycle() {
@@ -751,7 +864,7 @@ function startMatrix() {
 /* ---------------- APP REGISTRY ---------------- */
 const APPS = {
   about: appAbout, cv: appCV, projects: appProjects, skills: appSkills, explorer: appExplorer,
-  terminal: appTerminal, contact: appContact, recycle: appRecycle,
+  terminal: appTerminal, contact: appContact, services: appServices, recycle: appRecycle,
   calculator: appCalculator, calendar: appCalendar, notepad: appNotepad,
   settings: appSettings, taskmgr: appTaskMgr,
 };
@@ -759,6 +872,7 @@ const APPS = {
 const APP_META = {
   about: ["\uD83D\uDCC4", "About.txt"], cv: ["\uD83D\uDCC4", "CV.pdf"], projects: ["\uD83D\uDE80", "Projects"], skills: ["\uD83D\uDCCA", "Skills.exe"],
   explorer: ["\uD83D\uDCC1", "My Works"], terminal: ["\u2328\uFE0F", "Terminal"], contact: ["\uD83D\uDCEC", "Contact"],
+  services: ["\u{1F6E0}\uFE0F", "Services"],
   recycle: ["\uD83D\uDDD1\uFE0F", "Recycle Bin"], calculator: ["\uD83E\uDDEE", "Calculator"], calendar: ["\uD83D\uDCC5", "Calendar"],
   notepad: ["\uD83D\uDCDD", "Notepad"], settings: ["\u2699\uFE0F", "Settings"], taskmgr: ["\uD83D\uDDA5\uFE0F", "Task Manager"],
 };

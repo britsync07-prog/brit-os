@@ -561,6 +561,54 @@ body {
 .qs-dot:hover { transform: scale(1.15); }
 .qs-dot.on { border-color: #fff; }
 
+/* ============ SERVICES ============ */
+.services-wrap { max-width: 100%; }
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.svc-card {
+  border: 1px solid rgba(6,182,212,.3);
+  border-radius: 12px; padding: 16px;
+  background: rgba(255,255,255,.028);
+  transition: transform .18s, border-color .18s, box-shadow .18s;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.svc-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--violet);
+  box-shadow: 0 12px 32px rgba(6,182,212,.18);
+}
+.svc-head { display: flex; gap: 12px; align-items: flex-start; }
+.svc-icon { font-size: 26px; }
+.svc-name { font-size: 15px; font-weight: 700; letter-spacing: .2px; }
+.svc-tag { color: #a5b4fc; font-size: 11.5px; font-weight: 600; margin-top: 2px; }
+.svc-desc { color: #b9b9cf; font-size: 13px; line-height: 1.6; margin: 2px 0 6px; }
+.svc-benefits { display: flex; flex-wrap: wrap; gap: 6px; }
+.svc-use {
+  margin-top: auto; padding-top: 8px; border-top: 1px solid rgba(255,255,255,.06);
+  font-size: 12.5px; color: #c9c9de; line-height: 1.55;
+}
+.svc-use b { color: var(--text); }
+.svc-cta {
+  display: inline-block; margin-top: 8px; font-size: 12.5px; font-weight: 700;
+  text-decoration: none; color: #fff; background: var(--accent-grad);
+  padding: 7px 14px; border-radius: 8px; text-align: center;
+}
+.svc-cta:hover { filter: brightness(1.2); transform: translateY(-1px); }
+.svc-footer {
+  border-top: 1px solid rgba(255,255,255,.06); padding-top: 10px;
+  text-align: center;
+}
+.svc-cta.big {
+  display: inline-block; margin-top: 6px; font-size: 14px; font-weight: 700;
+  text-decoration: none; color: #fff; background: var(--accent-grad);
+  padding: 10px 22px; border-radius: 10px;
+}
+.svc-cta.big:hover { filter: brightness(1.2); }
+
 /* ============ MOBILE ============ */
 @media (max-width: 720px) {
   .window { left: 2vw !important; top: 2vh !important; width: 96vw !important; height: calc(100vh - 120px) !important; }
