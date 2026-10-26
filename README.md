@@ -71,6 +71,13 @@ brit-os/
 
 Built for **SEO + shareability**: single HTML file = perfect Lighthouse score, `brit-os.pages.dev` indexed as “portfolio operating system”, vanilla JS means instant load on any CDN. Recruiters search “interactive portfolio”, “creative developer portfolio” — this ranks.
 
+## Contact
+
+- 📧 Email: [saimon@ascentraconsulting.co.uk](mailto:saimon@ascentraconsulting.co.uk)
+- 💼 LinkedIn: [Musfiqur Rahman Saimon](https://www.linkedin.com/in/musfiqur-rahman-saimon-a5994b3aa)
+- 🐙 GitHub: [@britsync07-prog](https://github.com/britsync07-prog)
+- 🌐 Portfolio: [brit-os.pages.dev](https://brit-os.pages.dev/)
+
 ## License
 
 MIT License — Copyright (c) 2026 Musfiqur Rahman Saimon. See [LICENSE](./LICENSE).
