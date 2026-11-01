@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BritOS 7 — Musfiqur Rahman Saimon</title>
+<title>BritOS 7 - Musfiqur Rahman Saimon</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖥️</text></svg>">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="phone.css">
 </head>
 <body>
 
@@ -23,7 +24,7 @@
     <h1>Musfiqur Rahman Saimon</h1>
     <p class="login-sub">Full-Stack Product Engineer</p>
     <button id="login-btn">Log In as Visitor</button>
-    <p class="login-hint">no password required — trust is my default policy</p>
+    <p class="login-hint">no password required - trust is my default policy</p>
   </div>
 </div>
 
@@ -105,7 +106,7 @@
     </div>
     <div id="tray">
       <div id="perf-widget" title="System performance"><canvas id="perf-cv" width="72" height="22"></canvas><span id="perf-val">15%</span></div>
-      <span class="tray-ic" id="tray-net" title="BritNet — connected">📶</span>
+      <span class="tray-ic" id="tray-net" title="BritNet - connected">📶</span>
       <span class="tray-ic" id="tray-vol" title="Quick settings">🔊</span>
       <span class="tray-ic" id="tray-bat" title="Battery 87%">🔋</span>
       <div id="tray-clock" title="Calendar"><span id="clock"></span><span id="tray-date"></span></div>
@@ -139,6 +140,487 @@
   <div><p>It is now safe to close this tab.</p><small>(or click anywhere to power back on)</small></div>
 </div>
 
+<!-- ============ PHONE VIEW (BRITDROID 14 EMBER EDITION) ============ -->
+<div id="phone-container" class="hidden">
+
+  <!-- 1. ANDROID BOOT SCREEN (EMBER) -->
+  <div id="phone-boot">
+    <div class="android-boot-wrap">
+      <div class="boot-ember-logo">
+        <div class="boot-ember-ring-back"></div>
+        <div class="boot-ember-ring"></div>
+        <div class="boot-robot-mark">🤖</div>
+      </div>
+      <div class="boot-system-name">BritDroid 14</div>
+      <div class="boot-system-tag">Ember Edition - Saimon OS</div>
+      <div class="boot-track">
+        <div class="boot-track-fill" id="phone-boot-fill"></div>
+      </div>
+      <div class="boot-status-line" id="phone-boot-msg">Starting Android...</div>
+      <button class="boot-skip-pill" id="phone-boot-skip">Skip Boot ›</button>
+    </div>
+    <div class="boot-footer-box">
+      <div class="boot-footer-powered">powered by</div>
+      <div class="boot-footer-android">android</div>
+    </div>
+  </div>
+
+  <!-- 2. ANDROID TOP STATUS BAR -->
+  <div id="phone-status-bar" title="Swipe or tap down for Quick Settings">
+    <div class="status-left">
+      <span class="status-time" id="phone-status-time">02:40</span>
+      <div class="status-notif-icons">
+        <span>✉</span>
+        <span>⚡</span>
+      </div>
+    </div>
+    <div class="status-punchhole"></div>
+    <div class="status-right">
+      <span>5G</span>
+      <span>📶</span>
+      <div class="status-battery">
+        <span>98%</span>
+        <span>🔋</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. ANDROID LOCK SCREEN -->
+  <div id="phone-lock" class="phone-theme-ember">
+    <div class="lock-time-box">
+      <div class="lock-clock-display" id="phone-lock-time">02:40</div>
+      <div class="lock-date-display" id="phone-lock-date">Monday, Nov 2</div>
+      <div class="lock-weather-pill">
+        <span>☀️ 24°C</span>
+        <span>·</span>
+        <span>Available for Hire</span>
+      </div>
+    </div>
+
+    <div class="lock-cards-stack">
+      <div class="lock-card-item">
+        <div class="lock-card-icon">🚀</div>
+        <div class="lock-card-info">
+          <div class="lock-card-title">Musfiqur Rahman Saimon</div>
+          <div class="lock-card-desc">Full-Stack Product Engineer. 8 shipped products.</div>
+        </div>
+      </div>
+      <div class="lock-card-item">
+        <div class="lock-card-icon">💼</div>
+        <div class="lock-card-info">
+          <div class="lock-card-title">Services Available</div>
+          <div class="lock-card-desc">Data mining, scraping, and e-commerce solutions.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lock-bottom-area">
+      <button class="lock-fingerprint" id="phone-unlock-btn" title="Tap or swipe up to unlock">
+        👆
+      </button>
+      <div class="lock-hint-text">
+        <span>Swipe up or tap to unlock</span>
+      </div>
+      <div class="lock-quick-shortcuts">
+        <div class="lock-action-circle" onclick="openPhoneApp('contact')">📞</div>
+        <div class="lock-action-circle" onclick="openPhoneApp('cv')">📄</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. TOP SLIDER (NOTIFICATION & QUICK SETTINGS SHADE) -->
+  <div id="phone-slider">
+    <div class="slider-top-bar">
+      <div>
+        <div class="slider-large-time" id="phone-slider-clock">02:40</div>
+        <div class="slider-date-label" id="phone-slider-date">Monday, Nov 2</div>
+      </div>
+      <div class="slider-top-btns">
+        <button class="slider-head-btn" onclick="openPhoneApp('settings')" title="Settings">⚙️</button>
+        <button class="slider-head-btn" onclick="toggleTopSlider(false)" title="Close">✕</button>
+      </div>
+    </div>
+
+    <!-- Quick Settings Tiles Grid -->
+    <div class="qs-tiles-grid">
+      <div class="qs-tile-btn qs-on" id="p-qs-wifi">
+        <span class="qs-tile-icon">📶</span>
+        <span class="qs-tile-name">BritNet</span>
+      </div>
+      <div class="qs-tile-btn qs-on" id="p-qs-bt">
+        <span class="qs-tile-icon">🔵</span>
+        <span class="qs-tile-name">Bluetooth</span>
+      </div>
+      <div class="qs-tile-btn qs-on" id="p-qs-dark">
+        <span class="qs-tile-icon">🌙</span>
+        <span class="qs-tile-name">OLED Dark</span>
+      </div>
+      <div class="qs-tile-btn" id="p-qs-torch">
+        <span class="qs-tile-icon">🔦</span>
+        <span class="qs-tile-name">Torch</span>
+      </div>
+      <div class="qs-tile-btn qs-on" id="p-qs-sound">
+        <span class="qs-tile-icon">🔊</span>
+        <span class="qs-tile-name">Sound</span>
+      </div>
+      <div class="qs-tile-btn" id="p-qs-air">
+        <span class="qs-tile-icon">✈️</span>
+        <span class="qs-tile-name">Airplane</span>
+      </div>
+      <div class="qs-tile-btn" onclick="openPhoneApp('settings')">
+        <span class="qs-tile-icon">🎨</span>
+        <span class="qs-tile-name">Ember</span>
+      </div>
+      <div class="qs-tile-btn" onclick="openPhoneApp('services')">
+        <span class="qs-tile-icon">💼</span>
+        <span class="qs-tile-name">Hire Me</span>
+      </div>
+    </div>
+
+    <!-- Brightness Row -->
+    <div class="slider-brightness-row">
+      <span style="font-size:16px;color:#fb923c">🔅</span>
+      <input type="range" class="slider-range-bar" id="phone-brightness-slider" min="30" max="115" value="100">
+      <span style="font-size:16px;color:#fb923c">🔆</span>
+    </div>
+
+    <!-- Notifications Header -->
+    <div class="slider-notifs-header">
+      <span class="slider-notifs-title">Notifications</span>
+      <button class="slider-notifs-clear" id="clear-phone-notifs">Clear all</button>
+    </div>
+
+    <!-- Notifications Scroller -->
+    <div class="slider-notifs-scroller">
+      <div class="slider-notif-row" data-open-app="about">
+        <div class="snr-icon">👋</div>
+        <div>
+          <div class="snr-title">Musfiqur Rahman Saimon</div>
+          <div class="snr-text">Full-Stack Product Engineer. Tap to read bio.</div>
+        </div>
+      </div>
+      <div class="slider-notif-row" data-open-app="projects">
+        <div class="snr-icon">🚀</div>
+        <div>
+          <div class="snr-title">8 Production Systems</div>
+          <div class="snr-text">AHS Vault, BritCRM, BritTrade AI, and more.</div>
+        </div>
+      </div>
+      <div class="slider-notif-row" data-open-app="services">
+        <div class="snr-icon">💼</div>
+        <div>
+          <div class="snr-title">Data & E-Commerce Engineering</div>
+          <div class="snr-text">Mining, extraction, cleaning, and catalog setup.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slider-bottom-handle" id="phone-slider-handle" title="Slide or tap to close"></div>
+  </div>
+
+  <!-- 5. ANDROID HOME SCREEN (MULTI-SCREEN SWIPER) -->
+  <div id="phone-home" class="phone-theme-ember">
+    <!-- Horizontal Pages Viewport -->
+    <div class="phone-pages-viewport" id="phone-pages-viewport">
+      <div class="phone-pages-track" id="phone-pages-track">
+
+        <!-- SCREEN 1: PRIMARY APPS & WIDGETS -->
+        <div class="phone-page" id="phone-page-1">
+          <!-- At a Glance Widget -->
+          <div class="home-glance-card">
+            <div>
+              <div class="hgc-clock" id="phone-hw-time">02:40</div>
+              <div class="hgc-date" id="phone-hw-date">Mon, Nov 2</div>
+            </div>
+            <div class="hgc-weather">
+              <div class="hgc-temp">24°C</div>
+              <div class="hgc-condition">Sunny · Open for Hire</div>
+            </div>
+          </div>
+
+          <!-- Search Pill -->
+          <div class="home-search-pill" id="phone-search-pill">
+            <span class="hsp-glyph">G</span>
+            <span class="hsp-placeholder">Search apps, projects, capabilities...</span>
+            <span class="hsp-mic">🎙️</span>
+          </div>
+
+          <!-- 4-Column App Grid -->
+          <div class="home-grid-view">
+            <div class="home-icon-cell" data-app="about">
+              <div class="app-squircle"><span>📄</span></div>
+              <span class="app-icon-name">About Me</span>
+            </div>
+            <div class="home-icon-cell" data-app="projects">
+              <div class="app-squircle"><span>🚀</span></div>
+              <span class="app-icon-name">Projects</span>
+              <span class="app-badge-dot">8</span>
+            </div>
+            <div class="home-icon-cell" data-app="skills">
+              <div class="app-squircle"><span>📊</span></div>
+              <span class="app-icon-name">Skills</span>
+            </div>
+            <div class="home-icon-cell" data-app="services">
+              <div class="app-squircle"><span>💼</span></div>
+              <span class="app-icon-name">Services</span>
+              <span class="app-badge-dot">Hot</span>
+            </div>
+
+            <div class="home-icon-cell" data-app="explorer">
+              <div class="app-squircle"><span>📁</span></div>
+              <span class="app-icon-name">Files</span>
+            </div>
+            <div class="home-icon-cell" data-app="terminal">
+              <div class="app-squircle"><span>⌨️</span></div>
+              <span class="app-icon-name">Termux</span>
+            </div>
+            <div class="home-icon-cell" data-app="cv">
+              <div class="app-squircle"><span>📄</span></div>
+              <span class="app-icon-name">CV / PDF</span>
+            </div>
+            <div class="home-icon-cell" data-app="contact">
+              <div class="app-squircle"><span>📬</span></div>
+              <span class="app-icon-name">Contact</span>
+            </div>
+
+            <div class="home-icon-cell" data-app="calculator">
+              <div class="app-squircle"><span>🧮</span></div>
+              <span class="app-icon-name">Calculator</span>
+            </div>
+            <div class="home-icon-cell" data-app="calendar">
+              <div class="app-squircle"><span>📅</span></div>
+              <span class="app-icon-name">Calendar</span>
+            </div>
+            <div class="home-icon-cell" data-app="notepad">
+              <div class="app-squircle"><span>📝</span></div>
+              <span class="app-icon-name">Notes</span>
+            </div>
+            <div class="home-icon-cell" data-app="settings">
+              <div class="app-squircle"><span>⚙️</span></div>
+              <span class="app-icon-name">Settings</span>
+            </div>
+          </div>
+
+          <!-- Swipe Left Cue -->
+          <div class="screen-swipe-prompt" onclick="setHomeScreen(1)">
+            <span>Swipe left for Screen 2 widgets</span>
+            <span style="font-size:14px">›</span>
+          </div>
+        </div>
+
+        <!-- SCREEN 2: DISCOVER & WIDGET FEED (SWIPE LEFT TO SEE) -->
+        <div class="phone-page" id="phone-page-2">
+          <!-- Screen 2 Header Bar -->
+          <div class="screen2-header-cue" onclick="setHomeScreen(0)">
+            <span>‹ Back to Home</span>
+            <span style="color:var(--phone-muted);font-size:11px">Screen 2 of 2</span>
+          </div>
+
+          <!-- Featured Architecture Card -->
+          <div class="widget-card-ember">
+            <div class="wce-title-bar">
+              <span class="wce-title">🔐 AHS Vault Architecture</span>
+              <span class="wce-badge">Active</span>
+            </div>
+            <div style="font-size:12px;color:var(--phone-muted);line-height:1.45;margin-bottom:8px;">
+              Zero-knowledge biometric vault with chunked AES-256-GCM storage and paired phone authorization.
+            </div>
+            <button class="cta-button-ember" onclick="openPhoneApp('projects')" style="margin-top:4px;padding:7px 12px;font-size:11.5px;">
+              Inspect Project Systems ↗
+            </button>
+          </div>
+
+          <!-- Media Player Widget (Ambient Tech Beats) -->
+          <div class="media-player-ember">
+            <div class="mpe-art" id="mpe-disc">🎵</div>
+            <div class="mpe-info">
+              <div class="mpe-track-name">Saimon Full-Stack Ambient Beats</div>
+              <div class="mpe-artist-name" id="mpe-status-text">Tap play for audio soundscape</div>
+            </div>
+            <div class="mpe-controls">
+              <button class="mpe-btn" id="mpe-play-btn" title="Toggle audio">▶</button>
+            </div>
+          </div>
+
+          <!-- Live Infrastructure Monitor Widget -->
+          <div class="widget-card-ember">
+            <div class="wce-title-bar">
+              <span class="wce-title">⚡ Live Infrastructure</span>
+              <span class="wce-badge">100% OK</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:11px;color:var(--phone-muted);">
+              <div style="background:var(--phone-surface-2);padding:7px 8px;border-radius:6px;">
+                <span style="color:#fb923c">Kernel:</span> BritDroid 14
+              </div>
+              <div style="background:var(--phone-surface-2);padding:7px 8px;border-radius:6px;">
+                <span style="color:#fb923c">Network:</span> WebSocket Up
+              </div>
+              <div style="background:var(--phone-surface-2);padding:7px 8px;border-radius:6px;">
+                <span style="color:#fb923c">Vault:</span> AES-256-GCM
+              </div>
+              <div style="background:var(--phone-surface-2);padding:7px 8px;border-radius:6px;">
+                <span style="color:#fb923c">Stripe 3DS:</span> Armed
+              </div>
+            </div>
+          </div>
+
+          <!-- Screen 2 Quick Apps -->
+          <div class="home-grid-view" style="margin-top:10px;">
+            <div class="home-icon-cell" data-app="gallery">
+              <div class="app-squircle"><span>🖼️</span></div>
+              <span class="app-icon-name">Photos</span>
+            </div>
+            <div class="home-icon-cell" data-app="recycle">
+              <div class="app-squircle"><span>🗑️</span></div>
+              <span class="app-icon-name">Diagnostics</span>
+            </div>
+            <div class="home-icon-cell" data-app="services">
+              <div class="app-squircle"><span>💼</span></div>
+              <span class="app-icon-name">Hire Me</span>
+            </div>
+            <div class="home-icon-cell" data-app="contact">
+              <div class="app-squircle"><span>📬</span></div>
+              <span class="app-icon-name">Connect</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Pagination Dots Indicator -->
+    <div class="phone-pagination-dots" id="phone-page-dots">
+      <div class="page-dot active" data-page="0" onclick="setHomeScreen(0)"></div>
+      <div class="page-dot" data-page="1" onclick="setHomeScreen(1)"></div>
+    </div>
+
+    <!-- Drawer Swipe Hint -->
+    <div class="drawer-cue-strip" id="phone-drawer-hint">
+      <span class="drawer-cue-arrow">▲</span>
+      <div>All Apps</div>
+    </div>
+
+    <!-- Bottom Dock -->
+    <div class="home-dock-strip">
+      <div class="home-icon-cell" data-app="contact">
+        <div class="app-squircle"><span>📞</span></div>
+      </div>
+      <div class="home-icon-cell" data-app="terminal">
+        <div class="app-squircle"><span>💬</span></div>
+      </div>
+      <div class="home-icon-cell" data-app="projects">
+        <div class="app-squircle"><span>🌐</span></div>
+      </div>
+      <div class="home-icon-cell" data-app="cv">
+        <div class="app-squircle"><span>📷</span></div>
+      </div>
+      <div class="home-icon-cell" onclick="toggleAppDrawer(true)">
+        <div class="app-squircle" style="background:#261810"><span>⚏</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. ALL APPS DRAWER (A TO Z) -->
+  <div id="phone-app-drawer">
+    <div class="drawer-input-row">
+      <span style="color:#fb923c">🔍</span>
+      <input type="text" id="drawer-search-input" placeholder="Search applications...">
+    </div>
+    <div class="drawer-heading">All Applications (A - Z)</div>
+    <div class="drawer-apps-list" id="drawer-list-items">
+      <div class="drawer-app-item" data-app="about" data-name="About Me" data-desc="Bio and engineering background">
+        <div class="dai-icon">📄</div>
+        <div class="dai-meta"><div class="dai-name">About Me</div><div class="dai-desc">Bio and engineering background</div></div>
+      </div>
+      <div class="drawer-app-item" data-app="calculator" data-name="Calculator" data-desc="Touch arithmetic tool">
+        <div class="dai-icon">🧮</div>
+        <div class="dai-meta"><div class="dai-name">Calculator</div><div class="dai-desc">Touch arithmetic tool</div></div>
+      </div>
+      <div class="drawer-app-item" data-app="calendar" data-name="Calendar" data-desc="Delivery schedule and milestones">
+        <div class="dai-icon">📅</div>
+        <div class="dai-meta"><div class="dai-name">Calendar</div><div class="dai-desc">Delivery schedule and milestones</div></div>
+      </div>
+      <div class="drawer-app-item" data-app="contact" data-name="Contact Direct" data-desc="Email and professional channels">
+        <div class="dai-icon">📬</div>
+        <div class="dai-meta"><div class="dai-name">Contact Direct</div><div class="dai-desc">Email and professional channels</div></div>
+      </div>
+      <div class="drawer-app-item" data-app="cv" data-name="CV Resume" data-desc="Curriculum Vitae PDF">
+        <div class="dai-icon">📄</div>
+        <div class="dai-meta"><div class="dai-name">CV / Resume</div><div class="dai-desc">Curriculum Vitae PDF</div></div>
+      </div>
+      <div class="drawer-app-item" data-app="recycle" data-name="Diagnostics" data-desc="System health and performance">
+        <div class="dai-icon">🗑️</div>
+        <div class="dai-meta"><div class="dai-name">Diagnostics</div><div class="dai-desc">System health and performance</div></div>
+      </div>
+      <div class="drawer-app-item" data-app="explorer" data-name="Files Storage" data-desc="Internal storage and file tree">
+        <div class="dai-icon">📁</div>
+        <div class="dai-meta"><div class="dai-name">Files & Documents</div><div class="dai-desc">Internal storage and file tree</div></div>
+      </div>
+      <div class="drawer-app-item" data-app="notepad" data-name="Notes" data-desc="Autosaving scratchpad">
+        <div class="dai-icon">📝</div>
+        <div class="dai-meta"><div class="dai-name">Notes</div><div class="dai-desc">Autosaving scratchpad</div></div>
+      </div>
+      <div class="drawer-app-item" data-app="gallery" data-name="Photos Gallery" data-desc="Avatar and photography">
+        <div class="dai-icon">🖼️</div>
+        <div class="dai-meta"><div class="dai-name">Photos & Media</div><div class="dai-desc">Avatar and photography</div></div>
+      </div>
+      <div class="drawer-app-item" data-app="projects" data-name="Projects" data-desc="8 production applications">
+        <div class="dai-icon">🚀</div>
+        <div class="dai-meta"><div class="dai-name">Projects</div><div class="dai-desc">8 production applications</div></div>
+      </div>
+      <div class="drawer-app-item" data-app="services" data-name="Services Hire Me" data-desc="Data mining, extraction, and catalogs">
+        <div class="dai-icon">💼</div>
+        <div class="dai-meta"><div class="dai-name">Services (Hire Me)</div><div class="dai-desc">Data mining, extraction, and catalogs</div></div>
+      </div>
+      <div class="drawer-app-item" data-app="settings" data-name="Settings" data-desc="Theme, wallpapers, and hardware specs">
+        <div class="dai-icon">⚙️</div>
+        <div class="dai-meta"><div class="dai-name">Settings</div><div class="dai-desc">Theme, wallpapers, and hardware specs</div></div>
+      </div>
+      <div class="drawer-app-item" data-app="skills" data-name="Skills Capabilities" data-desc="Full stack capabilities">
+        <div class="dai-icon">📊</div>
+        <div class="dai-meta"><div class="dai-name">Skills & Stack</div><div class="dai-desc">Full stack capabilities</div></div>
+      </div>
+      <div class="drawer-app-item" data-app="terminal" data-name="Termux Terminal" data-desc="Interactive mobile console">
+        <div class="dai-icon">⌨️</div>
+        <div class="dai-meta"><div class="dai-name">Termux Shell</div><div class="dai-desc">Interactive mobile console</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. FULL SCREEN MOBILE APP SCREEN -->
+  <div id="phone-app-screen">
+    <div class="app-screen-header">
+      <button class="app-back-arrow" id="p-app-back" title="Back">←</button>
+      <div class="app-title-group">
+        <span class="app-header-icon" id="p-app-icon">🚀</span>
+        <span class="app-header-title" id="p-app-title">Projects</span>
+      </div>
+      <button class="app-header-action" onclick="openPhoneApp('settings')" title="Settings">⚙️</button>
+    </div>
+    <div class="app-screen-viewport" id="p-app-body">
+      <!-- Dynamic Content -->
+    </div>
+  </div>
+
+  <!-- 8. ANDROID RECENTS / APP SWITCHER -->
+  <div id="phone-recents">
+    <div style="font-size:13px;font-weight:700;color:#fb923c;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px;">Active Applications</div>
+    <div class="recents-track-row" id="phone-recents-track">
+      <!-- Dynamic Recents Cards -->
+    </div>
+    <button class="recents-clear-pill" id="phone-recents-clear">Clear all</button>
+  </div>
+
+  <!-- 9. ANDROID 3-BUTTON BOTTOM NAVIGATION BAR -->
+  <div id="phone-nav-bar">
+    <button class="p-nav-action" id="p-nav-back" title="Back">◀</button>
+    <button class="p-nav-action" id="p-nav-home" title="Home">◯</button>
+    <button class="p-nav-action" id="p-nav-recents" title="Recents">▢</button>
+  </div>
+
+</div>
+
 <script src="app.js"></script>
+<script src="phone.js"></script>
 </body>
 </html>

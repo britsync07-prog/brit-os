@@ -184,7 +184,23 @@ const BOOT_LINES = [
   ["", "Loading BritOS kernel ........................... <span class='ok'>DONE</span>"],
 ];
 
+function isPhoneViewTarget() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("mode") === "phone") return true;
+  if (params.get("mode") === "desktop") return false;
+  const saved = localStorage.getItem("britos-view-mode");
+  if (saved === "phone") return true;
+  if (saved === "desktop") return false;
+  return window.innerWidth <= 768 || (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && window.innerWidth <= 900);
+}
+
 function runBoot() {
+  if (isPhoneViewTarget()) {
+    const bs = $("#boot-screen"); if (bs) bs.classList.add("hidden");
+    const ls = $("#login-screen"); if (ls) ls.classList.add("hidden");
+    const dt = $("#desktop"); if (dt) dt.classList.add("hidden");
+    return;
+  }
   const log = $("#boot-log");
   let i = 0;
   const next = () => {
@@ -739,10 +755,10 @@ function appNotepad() {
 
 /* ---------------- SETTINGS ---------------- */
 const ACCENTS = {
-  aqua:   { indigo: "#38bdf8", violet: "#06b6d4", pink: "#2dd4bf", css: "linear-gradient(135deg,#38bdf8,#06b6d4,#2dd4bf)" },
-  ice:    { indigo: "#93c5fd", violet: "#60a5fa", pink: "#7dd3fc", css: "linear-gradient(135deg,#93c5fd,#60a5fa,#7dd3fc)" },
-  matrix: { indigo: "#10b981", violet: "#22c55e", pink: "#a3e635", css: "linear-gradient(135deg,#10b981,#22c55e,#a3e635)" },
-  ember:  { indigo: "#f97316", violet: "#ef4444", pink: "#fb7185", css: "linear-gradient(135deg,#f97316,#ef4444,#fb7185)" },
+  aqua:   { indigo: "#60a5fa", violet: "#22d3ee", pink: "#34d399", css: "linear-gradient(135deg,#60a5fa,#22d3ee,#34d399)" },
+  ice:    { indigo: "#bfdbfe", violet: "#60a5fa", pink: "#a5f3fc", css: "linear-gradient(135deg,#bfdbfe,#60a5fa,#a5f3fc)" },
+  matrix: { indigo: "#34d399", violet: "#22c55e", pink: "#bef264", css: "linear-gradient(135deg,#34d399,#22c55e,#bef264)" },
+  ember:  { indigo: "#fb923c", violet: "#f43f5e", pink: "#fda4af", css: "linear-gradient(135deg,#fb923c,#f43f5e,#fda4af)" },
 };
 const WALLS = ["aurora", "midnight", "emberfall"];
 
