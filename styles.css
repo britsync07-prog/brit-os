@@ -63,6 +63,47 @@ button:focus-visible, .dicon:focus-visible { outline: 2px solid #fff; outline-of
   box-shadow: 0 0 34px rgba(6,182,212,.55);
 }
 .avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; }
+
+/* Login Screen Avatar Ring Frame */
+.login-card .avatar {
+  position: relative;
+  width: 104px; height: 104px; margin: 0 auto 18px;
+  border-radius: 50%;
+  padding: 3px;
+  background: var(--accent-grad);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 24px rgba(34, 211, 238, 0.25);
+  display: flex; align-items: center; justify-content: center;
+  transition: transform .25s ease, box-shadow .25s ease;
+  overflow: visible;
+}
+.login-card .avatar:hover {
+  transform: scale(1.04);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5), 0 0 32px rgba(34, 211, 238, 0.4);
+}
+.login-card .avatar::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: var(--violet);
+  border-right-color: var(--indigo);
+  animation: ringSpin 2s linear infinite;
+  pointer-events: none;
+}
+.login-card .avatar > img {
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  border: 2px solid rgba(13, 13, 26, 0.85);
+  position: relative;
+  z-index: 2;
+}
+@keyframes ringSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 .login-card h1 { font-size: 26px; font-weight: 600; }
 .login-sub { color: var(--muted); margin: 6px 0 22px; }
 #login-btn {
@@ -114,7 +155,7 @@ button:focus-visible, .dicon:focus-visible { outline: 2px solid #fff; outline-of
   to   { transform: translate(6vw, 4vh) scale(1.15); }
 }
 
-/* icons — free-positioned draggable desktop */
+/* icons - free-positioned draggable desktop */
 #icons { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
 .dicon {
   position: absolute;
