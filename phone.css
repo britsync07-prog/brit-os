@@ -120,6 +120,17 @@ body.phone-mode-active #phone-container {
   animation: bootPulse 2s ease-in-out infinite alternate;
 }
 
+.boot-avatar-img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(251, 146, 60, 0.45);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6), 0 0 12px rgba(251, 146, 60, 0.25);
+  animation: bootPulse 2s ease-in-out infinite alternate;
+  z-index: 2;
+}
+
 @keyframes bootSpin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
